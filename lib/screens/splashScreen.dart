@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'onboarding.dart';
 import 'home.dart';
 
 class splashScreen extends StatefulWidget {
@@ -13,16 +16,15 @@ class _splashScreenState extends State<splashScreen> {
   @override
   void initState() {
     super.initState();
-    // _navigateToHome();
+    _navigateToOnboard();
   }
 
-  // _navigateToHome() async {
-  //   await Future.delayed(Duration(milliseconds: 1500), () {});
-  //   Navigator.pushReplacement(
-  //       context,
-  //       MaterialPageRoute(
-  //           builder: (context) => MyHomePage(title: 'Rantea Home Page')));
-  // }
+  _navigateToOnboard() async {
+    await Timer(
+        Duration(seconds: 3),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => onBoarding())));
+  }
 
   @override
   Widget build(BuildContext context) {
