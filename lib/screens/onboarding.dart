@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rantea_app/models/onboard_models.dart';
-import 'home.dart';
 import 'signIn.dart';
 
 class onBoarding extends StatefulWidget {
@@ -73,7 +72,9 @@ class _onBoardingState extends State<onBoarding> {
                     height: 49,
                     width: 111,
                     child: SignInRouteButton(
-                        pageController: _pageController, isNext: 2),
+                      pageController: _pageController,
+                      isNext: _PageIndex,
+                    ),
                   ),
                   Spacer(
                     flex: 1,
@@ -95,18 +96,17 @@ class SignInRouteButton extends StatelessWidget {
   const SignInRouteButton({
     super.key,
     required PageController pageController,
-    this.isNext = 2,
+    this.isNext,
   }) : _pageController = pageController;
 
   final PageController _pageController;
 
-  final int isNext;
+  final isNext;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          // PERLU DI PERBAIKI
           if (isNext == 2) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const signIn()));
@@ -114,7 +114,7 @@ class SignInRouteButton extends StatelessWidget {
             _pageController.nextPage(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.ease);
-          } // BATAS PERBAIKAN
+          }
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFF133A40),
@@ -122,11 +122,21 @@ class SignInRouteButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10)),
-        child: Text(
-          'Selanjutnya',
-          style: GoogleFonts.poppins(
-              fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
-        ));
+        child: isNext == 2
+            ? Text(
+                'Masuk',
+                style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
+              )
+            : Text(
+                'Selanjutnya',
+                style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
+              ));
   }
 }
 

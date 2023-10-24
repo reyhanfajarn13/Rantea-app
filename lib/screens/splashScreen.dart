@@ -57,6 +57,7 @@ class _splashScreenState extends State<splashScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Spacer(),
                 Container(
                     width: 150,
                     child: Text(
@@ -71,6 +72,9 @@ class _splashScreenState extends State<splashScreen> {
                   alignment: Alignment.center,
                   width: 100.55,
                   child: Image.asset('lib/images/logo_ptpn.png'),
+                ),
+                const Spacer(
+                  flex: 2,
                 )
               ],
             )
