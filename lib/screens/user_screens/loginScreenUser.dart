@@ -10,48 +10,135 @@ class loginUser extends StatefulWidget {
 }
 
 class _loginUserState extends State<loginUser> {
+  bool _passVisibility = true;
   @override
   Widget build(BuildContext context) {
+    final _emailController = TextEditingController();
+    final _passController = TextEditingController();
+
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(0.0, 65.0, 0, 0),
+            height: size.height * 0.2,
             alignment: Alignment.center,
             child: Image.asset(
               'lib/images/logo_rantea_3.png',
             ),
           ),
-          const Spacer(),
-          Text("Username"),
-          Text("Password"),
-          const Spacer(),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MyHomePage(
-                              title: '',
-                            )));
-              },
-              style: ElevatedButton.styleFrom(
-                  fixedSize: Size.fromWidth(300),
-                  backgroundColor: Color(0xFF133A40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+          Form(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 300,
+                  child: TextFormField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      hintText: 'Email',
+                      fillColor: Colors.white60,
+                      filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide(
+                          color: Colors.grey.withOpacity(0.5),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide(
+                          color: Colors.grey.withOpacity(0.5),
+                        ),
+                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    ),
                   ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10)),
-              child: Text(
-                'Masuk',
-                style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
-              ))
+                ),
+                SizedBox(height: 15),
+                Container(
+                  width: 300,
+                  child: TextFormField(
+                    controller: _passController,
+                    obscureText: _passVisibility,
+                    decoration: InputDecoration(
+                      hintText: 'Password',
+                      fillColor: Colors.white,
+                      filled: true,
+                      suffixIcon: InkWell(
+                        onTap: _togglePasswordView,
+                        child: Icon(
+                          _passVisibility
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey,
+                          size: 20,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide(
+                          color: Colors.grey.withOpacity(0.5),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide(
+                          color: Colors.grey.withOpacity(0.5),
+                        ),
+                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(alignment: Alignment.center, child: LoginButton())
+              ],
+            ),
+          ),
+          const Spacer(),
         ],
       ),
     );
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      _passVisibility = !_passVisibility;
+    });
+  }
+}
+
+class LoginButton extends StatelessWidget {
+  const LoginButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MyHomePage(
+                        title: '',
+                      )));
+        },
+        style: ElevatedButton.styleFrom(
+            fixedSize: Size.fromWidth(300),
+            backgroundColor: Color(0xFF133A40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10)),
+        child: Text(
+          'Masuk',
+          style: GoogleFonts.poppins(
+              fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
+        ));
   }
 }
