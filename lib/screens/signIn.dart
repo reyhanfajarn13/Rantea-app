@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'guest_screens/homeScreenGuest.dart';
 import 'user_screens/loginScreenUser.dart';
+import 'package:rantea_app/screens/guest_screens/page/registerScreen.dart';
 
 class signIn extends StatefulWidget {
   const signIn({super.key});
@@ -13,6 +14,7 @@ class signIn extends StatefulWidget {
 class _signInState extends State<signIn> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         children: [
@@ -37,7 +39,7 @@ class _signInState extends State<signIn> {
                     borderRadius: BorderRadius.circular(100),
                   ),
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10)),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 20)),
               child: Text(
                 'Masuk sebagai user',
                 style: GoogleFonts.poppins(
@@ -46,12 +48,12 @@ class _signInState extends State<signIn> {
                     color: Colors.white),
               )),
           const SizedBox(
-            height: 5,
+            height: 15,
           ),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => homeGuest()));
+                    MaterialPageRoute(builder: (context) => registerScreen()));
               },
               style: ElevatedButton.styleFrom(
                   fixedSize: Size.fromWidth(300),
@@ -60,7 +62,7 @@ class _signInState extends State<signIn> {
                       borderRadius: BorderRadius.circular(100),
                       side: const BorderSide(width: 1.0, color: Colors.black)),
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10)),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 20)),
               child: Text(
                 'Masuk sebagai tamu',
                 style: GoogleFonts.poppins(

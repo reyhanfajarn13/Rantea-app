@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rantea_app/screens/home.dart';
+import 'admin/homeScreenAdmin.dart';
+import 'user/homeScreenUser.dart';
 
 class loginUser extends StatefulWidget {
   const loginUser({super.key});
@@ -40,6 +42,11 @@ class _loginUserState extends State<loginUser> {
                       hintText: 'Email',
                       fillColor: Colors.white60,
                       filled: true,
+                      prefixIcon: Icon(
+                        Icons.person_rounded,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide: BorderSide(
@@ -67,6 +74,11 @@ class _loginUserState extends State<loginUser> {
                       hintText: 'Password',
                       fillColor: Colors.white,
                       filled: true,
+                      prefixIcon: Icon(
+                        Icons.lock_rounded,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
                       suffixIcon: InkWell(
                         onTap: _togglePasswordView,
                         child: Icon(
@@ -112,6 +124,7 @@ class _loginUserState extends State<loginUser> {
   }
 }
 
+//CLASS LOGIN BUTTON
 class LoginButton extends StatelessWidget {
   const LoginButton({
     super.key,
@@ -121,12 +134,8 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MyHomePage(
-                        title: '',
-                      )));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => homeScreenAdmin()));
         },
         style: ElevatedButton.styleFrom(
             fixedSize: Size.fromWidth(300),

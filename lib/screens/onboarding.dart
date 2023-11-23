@@ -29,6 +29,7 @@ class _onBoardingState extends State<onBoarding> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -69,7 +70,7 @@ class _onBoardingState extends State<onBoarding> {
                     flex: 5,
                   ),
                   SizedBox(
-                    height: 49,
+                    height: size.height * 0.075,
                     width: 111,
                     child: SignInRouteButton(
                       pageController: _pageController,

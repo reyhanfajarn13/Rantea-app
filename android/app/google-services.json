@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "551434279378",
+    "project_id": "rantea-app",
+    "storage_bucket": "rantea-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551434279378:android:6404577319a28f03e5d00b",
+        "android_client_info": {
+          "package_name": "com.example.rantea_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYDrTJ0yyJcay5Ne-lno8p4SGq0-Q0ruE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
