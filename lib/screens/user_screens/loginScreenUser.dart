@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rantea_app/static/loadingPage.dart';
 import 'package:rantea_app/screens/home.dart';
 import 'user/homeScreenUser.dart';
@@ -157,8 +158,53 @@ class _LoginButtonState extends State<LoginButton> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => loadingPage()));
             }
-          } catch (e) {
-            print(e);
+          } catch (error) {
+            print(error);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Container(
+                  padding: EdgeInsets.all(16),
+                  height: 90,
+                  decoration: BoxDecoration(
+                      color: Color(0xFFC72C41),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        child: SvgPicture.asset('lib/images/warning.svg'),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Oops!",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                            Text(
+                              "Password Anda Salah.",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Colors.transparent,
+              duration: Duration(milliseconds: 1500),
+            ));
           }
         },
         style: ElevatedButton.styleFrom(

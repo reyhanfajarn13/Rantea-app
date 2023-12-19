@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rantea_app/screens/guest_screens/page/registration/firebase.dart';
 import 'package:rantea_app/screens/user_screens/loginScreenUser.dart';
 
 class registerScreen extends StatefulWidget {
@@ -20,44 +21,6 @@ final TextEditingController confirmPasswordController =
     new TextEditingController();
 final TextEditingController emailController = new TextEditingController();
 final TextEditingController usernameController = new TextEditingController();
-
-void signUpUser(BuildContext context, String email, String password,
-    String username) async {
-  // print("username = ${usernameController.text}");
-  if (_formKey.currentState?.validate() ?? false) {
-    try {
-      UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
-      User? newUser = userCredential.user;
-
-      if (newUser != null) {
-        await postDetailsToFireStore(email, username);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => loginUser()));
-      }
-    } catch (e) {
-      print("Error signing up: $e");
-    }
-  }
-}
-
-postDetailsToFireStore(String email, String username) async {
-  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  var user = _auth.currentUser;
-
-  if (user != null) {
-    Map<String, String> data = {
-      'email': email,
-      'username': username,
-    };
-    CollectionReference ref = firebaseFirestore.collection('Users');
-    ref.add(data);
-  }
-}
 
 class _registerScreenState extends State<registerScreen> {
   @override
@@ -211,9 +174,21 @@ class RegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () {
-          signUpUser(context, emailController.text, passwordController.text,
-              usernameController.text);
+        onPressed: () async {
+          try {
+            UserCredential userCredential =
+                await _auth.createUserWithEmailAndPassword(
+              email: emailController.text,
+              password: passwordController.text,
+            );
+            await addUser(emailController.text, usernameController.text);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => loginUser()),
+            );
+          } catch (e) {
+            print("Error signing up: $e");
+          }
         },
         style: ElevatedButton.styleFrom(
             fixedSize: Size.fromWidth(300),
