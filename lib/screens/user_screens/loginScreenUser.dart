@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rantea_app/static/loadingPage.dart';
 import 'package:rantea_app/screens/home.dart';
-import 'admin/homeScreenAdmin.dart';
 import 'user/homeScreenUser.dart';
 
 class loginUser extends StatefulWidget {
@@ -11,13 +12,22 @@ class loginUser extends StatefulWidget {
   State<loginUser> createState() => _loginUserState();
 }
 
+final _auth = FirebaseAuth.instance;
+
+TextEditingController _emailController = TextEditingController();
+TextEditingController _passController = TextEditingController();
+
 class _loginUserState extends State<loginUser> {
-  bool _passVisibility = true;
+  var _passVisibility;
+
+  @override
+  void initState() {
+    super.initState();
+    _passVisibility = true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _emailController = TextEditingController();
-    final _passController = TextEditingController();
-
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
@@ -79,16 +89,19 @@ class _loginUserState extends State<loginUser> {
                         color: Colors.grey,
                         size: 20,
                       ),
-                      suffixIcon: InkWell(
-                        onTap: _togglePasswordView,
-                        child: Icon(
-                          _passVisibility
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Colors.grey,
-                          size: 20,
-                        ),
-                      ),
+                      suffixIcon: IconButton(
+                          icon: Icon(
+                            _passVisibility
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.grey,
+                            size: 20,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _passVisibility = !_passVisibility;
+                            });
+                          }),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide: BorderSide(
@@ -117,25 +130,36 @@ class _loginUserState extends State<loginUser> {
     );
   }
 
-  void _togglePasswordView() {
-    setState(() {
-      _passVisibility = !_passVisibility;
-    });
-  }
+  // void _togglePasswordView() {
+
+  // }
 }
 
 //CLASS LOGIN BUTTON
-class LoginButton extends StatelessWidget {
+class LoginButton extends StatefulWidget {
   const LoginButton({
     super.key,
   });
 
   @override
+  State<LoginButton> createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton> {
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => homeScreenAdmin()));
+        onPressed: () async {
+          try {
+            final user = await _auth.signInWithEmailAndPassword(
+                email: _emailController.text, password: _passController.text);
+            if (user != null) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => loadingPage()));
+            }
+          } catch (e) {
+            print(e);
+          }
         },
         style: ElevatedButton.styleFrom(
             fixedSize: Size.fromWidth(300),

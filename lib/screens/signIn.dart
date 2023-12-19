@@ -26,6 +26,43 @@ class _signInState extends State<signIn> {
               alignment: Alignment.center,
             ),
           ),
+          const Spacer(flex: 3),
+          Container(
+            child: Image.asset('lib/images/signin_pict.png'),
+            alignment: Alignment.center,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: 300,
+            child: Text('Nikmati Hasil Teh Kualitas Dunia Setiap Saat!',
+                style: GoogleFonts.poppins(
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black)),
+          ),
+          const SizedBox(height: 20),
+          Container(
+            width: 300,
+            child: Text('Hasil kolaborasi dengan',
+                style: GoogleFonts.poppins(
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black)),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Container(
+            width: 300,
+            child: Image.asset(
+              'lib/images/logo_ptpn_2.png',
+            ),
+            alignment: Alignment.centerLeft,
+          ),
           const Spacer(),
           ElevatedButton(
               onPressed: () {

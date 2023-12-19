@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rantea_app/models/onboard_models.dart';
+import 'package:rantea_app/static/onboard_models.dart';
 import 'signIn.dart';
 
 class onBoarding extends StatefulWidget {
