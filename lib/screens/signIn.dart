@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'guest_screens/homeScreenGuest.dart';
 import 'user_screens/loginScreenUser.dart';
-import 'package:rantea_app/screens/guest_screens/page/registerScreen.dart';
+import 'package:rantea_app/screens/guest_screens/page/registration/registerScreen.dart';
 
 class signIn extends StatefulWidget {
   const signIn({super.key});
@@ -90,7 +90,7 @@ class _signInState extends State<signIn> {
           ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => registerScreen()));
+                    MaterialPageRoute(builder: (context) => homeScreenGuest()));
               },
               style: ElevatedButton.styleFrom(
                   fixedSize: Size.fromWidth(300),

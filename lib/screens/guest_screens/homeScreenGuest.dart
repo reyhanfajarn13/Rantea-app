@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rantea_app/screens/guest_screens/page/Home/homeGuest.dart';
 
 class homeScreenGuest extends StatefulWidget {
   const homeScreenGuest({super.key});
@@ -42,15 +43,15 @@ class _homeScreenGuestState extends State<homeScreenGuest> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_rounded),
-            label: 'Home',
+            label: 'Beranda',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business_center_rounded),
-            label: 'Business',
+            icon: Icon(Icons.app_registration_sharp),
+            label: 'Artikel',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school_rounded),
-            label: 'School',
+            icon: Icon(Icons.people_alt_rounded),
+            label: 'Profil',
           ),
         ],
         currentIndex: _selectedIndex,
@@ -61,9 +62,7 @@ class _homeScreenGuestState extends State<homeScreenGuest> {
   }
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-    ),
+    homeGuest(),
     Text(
       'Index 1: Business',
     ),

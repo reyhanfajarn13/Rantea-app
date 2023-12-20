@@ -22,7 +22,7 @@ class _loadingPageState extends State<loadingPage> {
 
   _navigateToOnboard() async {
     await Timer(
-        Duration(milliseconds: 2500),
+        Duration(milliseconds: 1000),
         () => Navigator.push(context,
             MaterialPageRoute(builder: (context) => homeScreenUser())));
   }

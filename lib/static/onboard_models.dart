@@ -12,7 +12,7 @@ class OnboardModels {
 final List<OnboardModels> demo_data = [
   OnboardModels(
       logo: 'lib/images/logo_rantea_2.png',
-      image: "lib/images/onboard_1.png",
+      image: 'lib/images/onboard_1.png',
       title: "Deteksi Mutu Bubuk Daun Teh",
       description:
           "Nunc vitae est adipiscing cursus. Semper gravida vestibulum fermentum tristique massa ultrices proin nam gravida. Massa sem et posuere lacus."),

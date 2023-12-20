@@ -165,7 +165,7 @@ class _LoginButtonState extends State<LoginButton> {
                   padding: EdgeInsets.all(16),
                   height: 90,
                   decoration: BoxDecoration(
-                      color: Color(0xFFC72C41),
+                      color: Color.fromARGB(255, 201, 17, 42),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Row(
                     children: [
