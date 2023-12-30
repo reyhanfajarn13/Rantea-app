@@ -215,7 +215,7 @@ class _LoginButtonState extends State<LoginButton> {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10)),
         child: Text(
-          'Masuk',
+          'Masuk Sebagai User',
           style: GoogleFonts.poppins(
               fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
         ));
