@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rantea_app/screens/user_screens/loginScreenUser.dart';
+import 'package:rantea_app/screens/signIn.dart';
 
 class profilGuest extends StatelessWidget {
   const profilGuest({super.key});
@@ -44,9 +44,10 @@ class profilGuest extends StatelessWidget {
               ),
             ),
             onPressed: () async {
-              Navigator.pushReplacement(
+              Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => loginUser()),
+                MaterialPageRoute(builder: (context) => signIn()),
+                (Route<dynamic> route) => false,
               );
             },
             child: Row(

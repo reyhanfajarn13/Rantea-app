@@ -34,8 +34,9 @@ class screenTeaDetails extends StatelessWidget {
             size: 24,
           ),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => homeTeaDetails()));
+            Navigator.pop(
+              context,
+            );
           },
         ),
         backgroundColor: Colors.white,

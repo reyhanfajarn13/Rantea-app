@@ -36,8 +36,7 @@ class homeTeaDetails extends StatelessWidget {
             size: 24,
           ),
           onPressed: () async {
-            await Navigator.push(context,
-                MaterialPageRoute(builder: (context) => homeScreenGuest()));
+            Navigator.pop(context);
           },
         ),
         backgroundColor: Colors.white,

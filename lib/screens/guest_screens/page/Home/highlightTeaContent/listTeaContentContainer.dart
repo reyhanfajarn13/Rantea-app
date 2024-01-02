@@ -9,8 +9,8 @@ class listTeaContentContainer extends StatelessWidget {
     required this.pict,
     required this.nextpage,
   });
-  final String content, pict;
-  final nextpage;
+  final content;
+  final nextpage, pict;
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +42,12 @@ class listTeaContentContainer extends StatelessWidget {
               width: 15,
             ),
             Container(
-              height: size.height * 0.1,
-              width: size.width * 0.1,
+              height: size.height * 0.125,
+              width: size.width * 0.125,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
+                  shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: AssetImage(pict), fit: BoxFit.contain)),
+                      image: NetworkImage(pict), fit: BoxFit.contain)),
             )
           ],
         ));

@@ -109,7 +109,7 @@ class SignInRouteButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: () {
           if (isNext == 2) {
-            Navigator.push(context,
+            Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const signIn()));
           } else {
             _pageController.nextPage(

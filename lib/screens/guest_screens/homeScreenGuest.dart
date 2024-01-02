@@ -37,27 +37,36 @@ class _homeScreenGuestState extends State<homeScreenGuest> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(24), topLeft: Radius.circular(24)),
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.black,
-              blurRadius: 3,
+              color: Colors.black38,
+              spreadRadius: 2,
+              blurRadius: 10,
             ),
           ],
         ),
-        child: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded),
-              label: 'Beranda',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people_alt_rounded),
-              label: 'Profil',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Color(0xFF133A40),
-          onTap: _onItemTapped,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(24),
+            topLeft: Radius.circular(24),
+          ),
+          child: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_rounded),
+                label: 'Beranda',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people_alt_rounded),
+                label: 'Profil',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: Color(0xFF133A40),
+            onTap: _onItemTapped,
+          ),
         ),
       ),
     );

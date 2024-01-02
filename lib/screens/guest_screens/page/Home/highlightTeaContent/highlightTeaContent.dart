@@ -32,7 +32,7 @@ class highlightTeaContent extends StatelessWidget {
             ),
             listTeaContentContainer(
               content: "Broken Orange Pecko",
-              pict: 'lib/images/logo_rantea_3.png',
+              pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(),
             ),
             const SizedBox(
@@ -40,7 +40,7 @@ class highlightTeaContent extends StatelessWidget {
             ),
             listTeaContentContainer(
               content: "Pecko Fanning",
-              pict: 'lib/images/logo_rantea_3.png',
+              pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(),
             ),
             const SizedBox(
@@ -48,7 +48,7 @@ class highlightTeaContent extends StatelessWidget {
             ),
             listTeaContentContainer(
               content: "Dust",
-              pict: 'lib/images/logo_rantea_3.png',
+              pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(),
             ),
           ],
@@ -92,7 +92,7 @@ class highlightTeaContent extends StatelessWidget {
             ),
             listTeaContentContainer(
               content: "Broken Orange Pecko Fanning",
-              pict: 'lib/images/logo_rantea_3.png',
+              pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(),
             ),
             const SizedBox(
@@ -100,7 +100,7 @@ class highlightTeaContent extends StatelessWidget {
             ),
             listTeaContentContainer(
               content: "Pecko Fanning 2",
-              pict: 'lib/images/logo_rantea_3.png',
+              pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(),
             ),
             const SizedBox(
@@ -108,7 +108,7 @@ class highlightTeaContent extends StatelessWidget {
             ),
             listTeaContentContainer(
               content: "Dust 2",
-              pict: 'lib/images/logo_rantea_3.png',
+              pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(),
             ),
           ],

@@ -60,6 +60,9 @@ class _homeGuestState extends State<homeGuest> {
               ),
               Container(
                 child: highlightTeaContent(),
+              ),
+              const SizedBox(
+                height: 25,
               )
             ],
           ),
