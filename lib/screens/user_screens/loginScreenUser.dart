@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rantea_app/static/loadingPage.dart';
-import 'package:rantea_app/screens/home.dart';
-import 'user/homeScreenUser.dart';
 
 class loginUser extends StatefulWidget {
   const loginUser({super.key});

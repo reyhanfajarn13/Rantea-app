@@ -47,7 +47,7 @@ class listTeaContentContainer extends StatelessWidget {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: NetworkImage(pict), fit: BoxFit.contain)),
+                      image: AssetImage(pict), fit: BoxFit.contain)),
             )
           ],
         ));

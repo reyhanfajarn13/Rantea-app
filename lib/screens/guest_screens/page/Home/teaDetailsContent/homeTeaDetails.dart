@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rantea_app/screens/guest_screens/homeScreenGuest.dart';
-import 'package:rantea_app/static/loadingPage.dart';
 import '../highlightTeaContent/listTeaContentContainer.dart';
 import 'screenTeaDetails.dart';
+import '../teaDetailsContent/data/firebase-storage-controller.dart';
 
 class homeTeaDetails extends StatelessWidget {
   const homeTeaDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseStorageService storageService = FirebaseStorageService();
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -54,7 +54,7 @@ class homeTeaDetails extends StatelessWidget {
                     ),
                     listTeaContentContainer(
                       content: "Broken Orange Pecko",
-                      pict: 'lib/images/logo_rantea_3.png',
+                      pict: 'lib/images/teh.png',
                       nextpage: screenTeaDetails(),
                     ),
                     const SizedBox(
@@ -62,7 +62,7 @@ class homeTeaDetails extends StatelessWidget {
                     ),
                     listTeaContentContainer(
                       content: "Pecko Fanning",
-                      pict: 'lib/images/logo_rantea_3.png',
+                      pict: 'lib/images/teh.png',
                       nextpage: screenTeaDetails(),
                     ),
                     const SizedBox(
@@ -70,7 +70,7 @@ class homeTeaDetails extends StatelessWidget {
                     ),
                     listTeaContentContainer(
                       content: "Dust",
-                      pict: 'lib/images/logo_rantea_3.png',
+                      pict: 'lib/images/teh.png',
                       nextpage: screenTeaDetails(),
                     ),
                   ],
@@ -83,7 +83,7 @@ class homeTeaDetails extends StatelessWidget {
                     ),
                     listTeaContentContainer(
                       content: "Broken Orange Pecko Fanning",
-                      pict: 'lib/images/logo_rantea_3.png',
+                      pict: 'lib/images/teh.png',
                       nextpage: screenTeaDetails(),
                     ),
                     const SizedBox(
@@ -91,7 +91,7 @@ class homeTeaDetails extends StatelessWidget {
                     ),
                     listTeaContentContainer(
                       content: "Pecko Fanning 2",
-                      pict: 'lib/images/logo_rantea_3.png',
+                      pict: 'lib/images/teh.png',
                       nextpage: screenTeaDetails(),
                     ),
                     const SizedBox(
@@ -99,7 +99,7 @@ class homeTeaDetails extends StatelessWidget {
                     ),
                     listTeaContentContainer(
                       content: "Dust 2",
-                      pict: 'lib/images/logo_rantea_3.png',
+                      pict: 'lib/images/teh.png',
                       nextpage: screenTeaDetails(),
                     ),
                   ],

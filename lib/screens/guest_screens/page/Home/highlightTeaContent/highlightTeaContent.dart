@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rantea_app/static/loadingPage.dart';
+import '../teaDetailsContent/data/firebase-storage-controller.dart';
 import '../teaDetailsContent/homeTeaDetails.dart';
 import '../teaDetailsContent/screenTeaDetails.dart';
 import 'listTeaContentContainer.dart';
@@ -10,6 +10,7 @@ class highlightTeaContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseStorageService storageService = FirebaseStorageService();
     return Row(
       children: [
         const Spacer(),

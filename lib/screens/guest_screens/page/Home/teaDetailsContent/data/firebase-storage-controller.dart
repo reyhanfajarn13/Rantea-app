@@ -11,7 +11,7 @@ class FirebaseStorageService {
   Future<String?> getImageUrl(String image) async {
     // Get the reference to the image file in Firebase Storage
     try {
-      final ref = _storage.ref().child('images').child(image);
+      final ref = _storage.ref('images').child(image);
       // Get teh imageUrl to download URL
       final url = await ref.getDownloadURL();
 
