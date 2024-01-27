@@ -1,5 +1,7 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'beranda/fitur/camera/takeCamera.dart';
 import 'beranda/homeUser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -17,6 +19,26 @@ class _homeScreenUserState extends State<homeScreenUser> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  late CameraDescription firstCamera;
+
+  @override
+  void initState() {
+    super.initState();
+    initializeCamera();
+  }
+
+  Future<void> initializeCamera() async {
+    // Ensure that plugin services are initialized so that `availableCameras()`
+    // can be called before `runApp()`
+    WidgetsFlutterBinding.ensureInitialized();
+
+    // Obtain a list of the available cameras on the device.
+    final cameras = await availableCameras();
+
+    // Get a specific camera from the list of available cameras.
+    firstCamera = cameras.first;
   }
 
   @override
@@ -40,8 +62,11 @@ class _homeScreenUserState extends State<homeScreenUser> {
         height: 75,
         child: FloatingActionButton(
           backgroundColor: Color(0xFF133A40),
-          onPressed: () {
-            // Add your onPressed code here!
+          onPressed: () async {
+            await Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (context) => takePictureCamera(camera: firstCamera)),
+            );
           },
           child: SvgPicture.asset('lib/images/logo_scan.svg'),
         ),
@@ -70,18 +95,6 @@ class _homeScreenUserState extends State<homeScreenUser> {
                 icon: Icon(Icons.home_rounded),
                 label: 'Beranda',
               ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.app_registration_rounded),
-              //   label: 'Artikel',
-              // ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.app_registration_rounded),
-              //   label: 'Artikel',
-              // ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.history_rounded),
-              //   label: 'Riwayat',
-              // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.people_rounded),
                 label: 'Profil',
