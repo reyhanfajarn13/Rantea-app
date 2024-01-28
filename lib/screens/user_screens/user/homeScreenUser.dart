@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'Profil/profilUser.dart';
 import 'beranda/fitur/camera/takeCamera.dart';
 import 'beranda/homeUser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -111,8 +111,6 @@ class _homeScreenUserState extends State<homeScreenUser> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     homeUser(),
-    Text(
-      'Index 1: Business',
-    ),
+    profilUser(),
   ];
 }

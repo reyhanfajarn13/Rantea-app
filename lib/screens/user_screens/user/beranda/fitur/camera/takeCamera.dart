@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'displayPicture.dart';
 
 class takePictureCamera extends StatefulWidget {
   const takePictureCamera({super.key, required this.camera});
@@ -109,9 +110,11 @@ class _takePictureCameraState extends State<takePictureCamera> {
           child: const Icon(
             Icons.circle,
             color: Colors.white,
-            size: 20,
           ),
           backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+              side: BorderSide(width: 3, color: Colors.green),
+              borderRadius: BorderRadius.circular(100)),
         ),
       ),
     );
@@ -119,18 +122,3 @@ class _takePictureCameraState extends State<takePictureCamera> {
 }
 
 // A widget that displays the picture taken by the user.
-class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
-
-  const DisplayPictureScreen({super.key, required this.imagePath});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
-    );
-  }
-}
