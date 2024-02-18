@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rantea_app/screens/onboarding.dart';
+import 'slidePengenalanContent.dart';
 
 //CLASS LOGIN BUTTON
 class pengenalanContent extends StatelessWidget {
@@ -15,7 +15,7 @@ class pengenalanContent extends StatelessWidget {
         onPressed: () async {
           await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => onBoarding()),
+            MaterialPageRoute(builder: (context) => slidePengenalanContent()),
           );
         },
         style: ElevatedButton.styleFrom(

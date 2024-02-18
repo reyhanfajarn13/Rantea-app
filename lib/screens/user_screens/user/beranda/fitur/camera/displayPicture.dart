@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'takeCamera.dart';
 
 class DisplayPictureScreen extends StatelessWidget {

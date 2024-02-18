@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rantea_app/screens/signIn.dart';
 
+import 'umpanBalikGuest.dart';
+
 class profilGuest extends StatelessWidget {
   const profilGuest({super.key});
 
@@ -69,7 +71,80 @@ class profilGuest extends StatelessWidget {
                 ),
                 const Spacer()
               ],
-            ))
+            )),
+        SizedBox(
+          height: 15,
+        ),
+        Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              color: Colors.grey[200]),
+          width: size.width * 0.9,
+          height: size.height * 0.3,
+          child: Row(
+            children: [
+              Container(
+                  alignment: Alignment.topCenter,
+                  child: Image.asset('lib/images/guestProfil_1.png')),
+              Spacer(),
+              Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                      width: 200,
+                      child: Text(
+                        'Aplikasi ini masih dalam tahap Pengembangan🌱',
+                        style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      )),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    width: 200,
+                    child: Text(
+                      'Bantu kami dengan memberikan masukan/kendala/bug agar aplikasi Rantea menjadi lebih baik lagi!',
+                      style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size(size.width * 0.3, size.height * 0.05),
+                      backgroundColor: Color(0xFF133A40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+                    onPressed: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => umpanBalikGuest()),
+                      );
+                    },
+                    child: Text(
+                      'Umpan Balik',
+                      style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        )
       ],
     );
   }
