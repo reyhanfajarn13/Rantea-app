@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'profilGuest.dart';
-import 'successNotifUmpanBalik.dart';
+import '../../../guest_screens/page/Profil/successNotifUmpanBalik.dart';
+import 'profilUser.dart';
 
-class umpanBalikGuest extends StatelessWidget {
-  const umpanBalikGuest({super.key});
+class umpanBalikUser extends StatelessWidget {
+  const umpanBalikUser({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class umpanBalikGuest extends StatelessWidget {
                     onPressed: () async {
                       Navigator.pop(
                         context,
-                        MaterialPageRoute(builder: (context) => profilGuest()),
+                        MaterialPageRoute(builder: (context) => profilUser()),
                       );
                     },
                     icon: Icon(Icons.west_rounded)),
