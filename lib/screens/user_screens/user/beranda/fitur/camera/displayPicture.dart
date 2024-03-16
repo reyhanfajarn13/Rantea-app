@@ -1,13 +1,35 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
-import 'takeCamera.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart' as path;
+import 'userFormScreen.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
-
   const DisplayPictureScreen({super.key, required this.imagePath});
+
+  Future<String> _saveImagetoFirebase() async {
+    if (imagePath == null) {
+      print('Please select an image and fill in all fields.');
+      return '';
+    }
+    String fileName = path.basename(imagePath);
+    Reference storageReference =
+        FirebaseStorage.instance.ref().child('images/$fileName');
+    try {
+      await storageReference
+          .putFile(File(imagePath))
+          .whenComplete(() => print('Image uploaded to Firebase Storage'));
+      String imageUrl = await storageReference.getDownloadURL();
+      return imageUrl;
+    } catch (e) {
+      print('Error uploading image to Firebase Storage: $e');
+      return '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +100,24 @@ class DisplayPictureScreen extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(7)),
                 ),
               ),
-              onPressed: () async {},
+              onPressed: () async {
+                String imageUrl = await _saveImagetoFirebase();
+                await FirebaseFirestore.instance
+                    .collection('users')
+                    .doc('history')
+                    .collection('tea_detail')
+                    .add({
+                  'imageUrl': imageUrl,
+                  'timestamp':
+                      '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                });
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => userFormScreen(
+                            imageUrl: imageUrl,
+                          )),
+                );
+              },
               child: Row(
                 children: [
                   const Spacer(),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rantea_app/screens/signIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rantea_app/screens/user_screens/user/Profil/updateProfilUser.dart';
+import '../beranda/fitur/camera/userFormScreen.dart';
 import 'umpanBalikUser.dart';
 
 class profilUser extends StatelessWidget {
@@ -189,6 +191,31 @@ class profilUser extends StatelessWidget {
                 ],
               )
             ],
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            fixedSize: Size(size.width * 0.3, size.height * 0.05),
+            backgroundColor: Color(0xFF133A40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+          ),
+          onPressed: () async {
+            // await Navigator.of(context).push(
+            //   MaterialPageRoute(
+            //       builder: (context) => userFormScreen(
+            //             imageUrl: '',
+            //           )),
+            // );
+          },
+          child: Text(
+            'Update Profil',
+            style: GoogleFonts.poppins(
+                fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         )
       ],

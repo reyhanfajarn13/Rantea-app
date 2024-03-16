@@ -4,6 +4,7 @@ import 'Profil/profilUser.dart';
 import 'beranda/fitur/camera/takeCamera.dart';
 import 'beranda/homeUser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'Profil/updateProfilUser.dart';
 
 class homeScreenUser extends StatefulWidget {
   const homeScreenUser({super.key});

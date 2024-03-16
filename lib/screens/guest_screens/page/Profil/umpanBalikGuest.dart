@@ -48,6 +48,7 @@ class umpanBalikGuest extends StatelessWidget {
                     if (_msgController.text.toString().isNotEmpty) {
                       await collection.add({
                         'date': DateTime.now(),
+                        'user': 'Guest',
                         'pesan': _msgController.text.toString()
                       }).then(
                         (value) => {

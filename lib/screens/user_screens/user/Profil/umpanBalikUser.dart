@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../guest_screens/page/Profil/successNotifUmpanBalik.dart';
 import 'profilUser.dart';
 
@@ -11,6 +11,8 @@ class umpanBalikUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController _msgController = TextEditingController();
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
     var collection = FirebaseFirestore.instance
         .collection('guest')
         .doc('umpan_balik')
@@ -48,6 +50,7 @@ class umpanBalikUser extends StatelessWidget {
                     if (_msgController.text.toString().isNotEmpty) {
                       await collection.add({
                         'date': DateTime.now(),
+                        'user': user?.email.toString().split('@').first,
                         'pesan': _msgController.text.toString()
                       }).then(
                         (value) => {

@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 Future<void> addUser(String email, String username) {
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference users = FirebaseFirestore.instance
+      .collection('users')
+      .doc('account')
+      .collection('user_details');
   // Call the user's CollectionReference to add a new user
   return users
       .add({
