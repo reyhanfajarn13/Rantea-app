@@ -1,38 +1,27 @@
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart' as path;
 import 'userFormScreen.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
-  const DisplayPictureScreen({super.key, required this.imagePath});
-
-  Future<String> _saveImagetoFirebase() async {
-    if (imagePath == null) {
-      print('Please select an image and fill in all fields.');
-      return '';
-    }
-    String fileName = path.basename(imagePath);
-    Reference storageReference =
-        FirebaseStorage.instance.ref().child('images/$fileName');
-    try {
-      await storageReference
-          .putFile(File(imagePath))
-          .whenComplete(() => print('Image uploaded to Firebase Storage'));
-      String imageUrl = await storageReference.getDownloadURL();
-      return imageUrl;
-    } catch (e) {
-      print('Error uploading image to Firebase Storage: $e');
-      return '';
-    }
-  }
+  final String predictionTeaType;
+  final CameraController controller;
+  const DisplayPictureScreen({
+    super.key,
+    required this.imagePath,
+    required this.predictionTeaType,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -66,7 +55,7 @@ class DisplayPictureScreen extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             child: Text(
-              'DUST 4',
+              '${predictionTeaType}',
               style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontSize: 32,
@@ -101,22 +90,92 @@ class DisplayPictureScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () async {
-                String imageUrl = await _saveImagetoFirebase();
-                await FirebaseFirestore.instance
-                    .collection('users')
-                    .doc('history')
-                    .collection('tea_detail')
-                    .add({
-                  'imageUrl': imageUrl,
-                  'timestamp':
-                      '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
-                });
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) => userFormScreen(
-                            imageUrl: imageUrl,
-                          )),
-                );
+                showModalBottomSheet(
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(15.0)),
+                    ),
+                    backgroundColor: Colors.blueGrey[50],
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: size.height * 0.35,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Container(
+                              child: Icon(
+                                Icons.mark_email_read_outlined,
+                                color: Color(0xFF133A40),
+                                size: 50,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: size.width * 0.7,
+                              child: Text(
+                                'Yakin untuk Simpan Gambar?',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: size.width * 0.8,
+                              child: Text(
+                                'Kami akan segera meninjaunya',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                fixedSize:
+                                    Size(size.width * 0.8, size.height * 0.06),
+                                backgroundColor: Color(0xFF133A40),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                ),
+                              ),
+                              onPressed: () async {
+                                controller.dispose();
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => userFormScreen(
+                                            imagePath: imagePath,
+                                            predictionTeaType:
+                                                predictionTeaType,
+                                          )),
+                                );
+                              },
+                              child: Text(
+                                'OK',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    });
               },
               child: Row(
                 children: [

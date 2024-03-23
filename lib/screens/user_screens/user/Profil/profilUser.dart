@@ -4,6 +4,7 @@ import 'package:rantea_app/screens/signIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rantea_app/screens/user_screens/user/Profil/updateProfilUser.dart';
 import '../beranda/fitur/camera/userFormScreen.dart';
+import '../beranda/fitur/history/historyUserScreen.dart';
 import 'umpanBalikUser.dart';
 
 class profilUser extends StatelessWidget {
@@ -205,12 +206,9 @@ class profilUser extends StatelessWidget {
             ),
           ),
           onPressed: () async {
-            // await Navigator.of(context).push(
-            //   MaterialPageRoute(
-            //       builder: (context) => userFormScreen(
-            //             imageUrl: '',
-            //           )),
-            // );
+            await Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => historyUserScreen()),
+            );
           },
           child: Text(
             'Update Profil',

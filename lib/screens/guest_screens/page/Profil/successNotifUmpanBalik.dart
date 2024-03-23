@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rantea_app/screens/guest_screens/page/Profil/umpanBalikGuest.dart';
 
 class successNotifUmpanBalik extends StatelessWidget {
-  const successNotifUmpanBalik({super.key});
+  final returnback;
+  const successNotifUmpanBalik({super.key, required this.returnback});
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +63,10 @@ class successNotifUmpanBalik extends StatelessWidget {
               ),
             ),
             onPressed: () async {
-              // Navigator.pushReplacement(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => umpanBalikGuest()),
-              // );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => returnback),
+              );
             },
             child: Text(
               'OK',

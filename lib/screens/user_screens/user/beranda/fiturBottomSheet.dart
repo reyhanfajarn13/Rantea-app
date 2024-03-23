@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'fitur/history/historyUserScreen.dart';
+
 class fiturBottomSheet extends StatelessWidget {
   const fiturBottomSheet({
     super.key,
@@ -83,7 +85,12 @@ class fiturBottomSheet extends StatelessWidget {
                     ),
                     child:
                         Container(child: Icon(Icons.history_rounded, size: 35)),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => historyUserScreen()),
+                      );
+                    },
                   ),
                   SizedBox(
                     height: 5,
@@ -103,17 +110,16 @@ class fiturBottomSheet extends StatelessWidget {
               Column(
                 children: [
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF133A40),
-                      fixedSize: Size(50, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12), // <-- Radius
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF133A40),
+                        fixedSize: Size(50, 60),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12), // <-- Radius
+                        ),
                       ),
-                    ),
-                    child: Container(
-                        child: Icon(Icons.ssid_chart_rounded, size: 35)),
-                    onPressed: () {},
-                  ),
+                      child: Container(
+                          child: Icon(Icons.ssid_chart_rounded, size: 35)),
+                      onPressed: () {}),
                   SizedBox(
                     height: 5,
                   ),
