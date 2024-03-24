@@ -23,30 +23,89 @@ class historyUserScreen extends StatelessWidget {
           return Center(child: Text('No data available'));
         }
 
-        return SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic> data =
-                  document.data() as Map<String, dynamic>;
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  child: ListTile(
-                    title: Text(
-                        'Prediction Tea Type: ${data['predictionTeaType']}'),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('User Predict By: ${data['userPredictBy']}'),
-                        Text('Timestamp: ${data['timestamp']}'),
-                        Text('Total Berat: ${data['totalBerat']}'),
-                      ],
+        // Membuat Map untuk mengelompokkan data berdasarkan timestamp
+        Map<String, List<Map<String, dynamic>>> groupedData = {};
+        snapshot.data!.docs.forEach((document) {
+          Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+          String timestamp = data['timestamp'];
+          groupedData.putIfAbsent(timestamp, () => []);
+          groupedData[timestamp]!.add(data);
+        });
+
+        return Container(
+          color: Colors.green,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: groupedData.keys.map((String timestamp) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 0.0),
+                      child: Container(
+                        color: Colors.white,
+                        child: Text(
+                          timestamp,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              );
-            }).toList(),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: groupedData[timestamp]!.length,
+                      itemBuilder: (context, index) {
+                        Map<String, dynamic> data =
+                            groupedData[timestamp]![index];
+                        return Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: Card(
+                            color: Colors.lightBlue,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 50,
+                                      width: 50,
+                                      child: Image.network(data['imageUrl']),
+                                    ),
+                                    Expanded(
+                                      child: ListTile(
+                                        title: Text(
+                                          'Prediction Tea Type: ${data['predictionTeaType']}',
+                                        ),
+                                        subtitle: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                'User Predict By: ${data['userPredictBy']}'),
+                                            Text(
+                                                'Timestamp: ${data['timestamp']}'),
+                                            Text(
+                                                'Total Berat: ${data['totalBerat']}'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
           ),
         );
       },
