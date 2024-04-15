@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class historyUserScreen extends StatelessWidget {
   const historyUserScreen({Key? key});
@@ -32,79 +33,134 @@ class historyUserScreen extends StatelessWidget {
           groupedData[timestamp]!.add(data);
         });
 
-        return Container(
-          color: Colors.green,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: groupedData.keys.map((String timestamp) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 0.0),
-                      child: Container(
-                        color: Colors.white,
-                        child: Text(
-                          timestamp,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
+        return Scaffold(
+          appBar: AppBar(
+            iconTheme: IconThemeData(color: Colors.black),
+            title: const Text('Riwayat',
+                style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold)),
+            backgroundColor: Colors.white70,
+          ),
+          body: Container(
+            color: Colors.white70,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: groupedData.keys.map((String timestamp) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5.0),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                timestamp,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: groupedData[timestamp]!.length,
-                      itemBuilder: (context, index) {
-                        Map<String, dynamic> data =
-                            groupedData[timestamp]![index];
-                        return Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: Card(
-                            color: Colors.lightBlue,
-                            child: Column(
-                              children: [
-                                Row(
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: groupedData[timestamp]!.length,
+                        itemBuilder: (context, index) {
+                          Map<String, dynamic> data =
+                              groupedData[timestamp]![index];
+                          return Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: Card(
+                              color: Colors.white70,
+                              child: SizedBox(
+                                height: 150,
+                                child: Column(
                                   children: [
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      child: Image.network(data['imageUrl']),
-                                    ),
-                                    Expanded(
-                                      child: ListTile(
-                                        title: Text(
-                                          'Prediction Tea Type: ${data['predictionTeaType']}',
+                                    Spacer(),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 10,
                                         ),
-                                        subtitle: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                                'User Predict By: ${data['userPredictBy']}'),
-                                            Text(
-                                                'Timestamp: ${data['timestamp']}'),
-                                            Text(
-                                                'Total Berat: ${data['totalBerat']}'),
-                                          ],
+                                        Container(
+                                          height: 120,
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            child: Image.network(
+                                              data['imageUrl'],
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                        Expanded(
+                                          child: ListTile(
+                                            title: Text(
+                                              '${data['predictionTeaType']}',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black87),
+                                            ),
+                                            subtitle: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'User Predict By: ${data['userPredictBy']}',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.black87),
+                                                ),
+                                                Text(
+                                                  'Timestamp: ${data['timestamp']}',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.black87),
+                                                ),
+                                                Text(
+                                                  'Total Berat: ${data['totalBerat']}',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.black87),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                    Spacer()
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                );
-              }).toList(),
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
             ),
           ),
         );

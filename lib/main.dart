@@ -1,5 +1,5 @@
 import 'package:rantea_app/screens/user_screens/loginScreenUser.dart';
-
+import 'package:intl/date_symbol_data_local.dart';
 import 'firebase_options.dart';
 import 'screens/splashScreen.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }

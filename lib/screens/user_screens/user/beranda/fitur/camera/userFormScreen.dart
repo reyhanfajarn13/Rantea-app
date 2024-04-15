@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:camera/camera.dart';
+import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -114,6 +114,9 @@ class _userFormScreenState extends State<userFormScreen> {
                               ),
                             ),
                             onPressed: () async {
+                              final String formattedDate =
+                                  DateFormat('MMMM d, yyyy')
+                                      .format(DateTime.now());
                               String imageUrl =
                                   await _saveImagetoFirebase(widget.imagePath);
                               double totalBerat =
@@ -128,8 +131,7 @@ class _userFormScreenState extends State<userFormScreen> {
                                 'predictionTeaType': widget.predictionTeaType,
                                 'imageUrl': imageUrl,
                                 'totalBerat': totalBerat,
-                                'timestamp':
-                                    '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                                'timestamp': formattedDate,
                               });
                               Navigator.pushAndRemoveUntil(
                                 context,
