@@ -7,10 +7,10 @@ class LineChartSample extends StatelessWidget {
     // For example, you could fetch data from an API
     await Future.delayed(Duration(seconds: 2)); // Simulating an async operation
     return [
-      FlSpot(0, 3),
+      FlSpot(3, 3),
       FlSpot(1, 1),
-      FlSpot(2, 4),
-      FlSpot(3, 2),
+      FlSpot(3, 3),
+      FlSpot(3, 3),
     ];
   }
 
