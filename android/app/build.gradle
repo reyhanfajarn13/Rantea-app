@@ -25,6 +25,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+// plugins {
+//     id 'com.android.application'
+//     id 'kotlin-android'
+//     id 'com.google.gms.google-services'
+//     // Add other plugins as needed
+//     id 'com.google.firebase.crashlytics'
+//     id 'com.google.firebase.firebase-crashlytics'
+//     id 'com.google.firebase.firebase-perf'
+//     id 'com.google.firebase.firebase-auth'
+//     id 'com.google.gms.google-services'
+//     id 'com.google.firebase.firebase-auth'
+//     id 'com.google.firebase.firebase-dynamic-links'
+// }
+
+
 android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion

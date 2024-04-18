@@ -11,6 +11,7 @@ class successNotifUmpanBalik extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.35,
+      width: size.width,
       child: Column(
         children: [
           SizedBox(

@@ -100,6 +100,7 @@ class DisplayPictureScreen extends StatelessWidget {
                     builder: (BuildContext context) {
                       return Container(
                         height: size.height * 0.35,
+                        width: size.width,
                         child: Column(
                           children: [
                             SizedBox(

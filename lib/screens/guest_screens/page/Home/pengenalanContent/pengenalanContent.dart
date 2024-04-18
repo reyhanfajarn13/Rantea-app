@@ -58,6 +58,7 @@ class pengenalanContent extends StatelessWidget {
             const Spacer(),
             Container(
               child: Icon(
+                color: Colors.white,
                 Icons.arrow_circle_right_rounded,
                 size: size.width * 0.1,
               ),

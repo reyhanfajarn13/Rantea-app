@@ -182,7 +182,7 @@ class profilUser extends StatelessWidget {
                     child: Text(
                       'Umpan Balik',
                       style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: 10,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),

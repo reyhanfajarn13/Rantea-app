@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'fitur/grafik/lineChartScreen.dart';
 import 'fitur/grafik/lineGraph.dart';
 
 class homeUserHeader extends StatelessWidget {
@@ -60,7 +61,9 @@ class homeUserHeader extends StatelessWidget {
             height: 20,
           ),
           Container(
-            child: LineChartSample(),
+            height: 300,
+            width: 300,
+            child: PieChartScreen(),
           )
         ],
       ),

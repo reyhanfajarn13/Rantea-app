@@ -100,7 +100,7 @@ class _takePictureCameraState extends State<takePictureCamera> {
                 MaterialPageRoute(
                   builder: (context) => DisplayPictureScreen(
                     imagePath: image.path,
-                    predictionTeaType: 'DUST 4',
+                    predictionTeaType: 'BOPF 1',
                     controller: _controller,
                   ),
                 ),

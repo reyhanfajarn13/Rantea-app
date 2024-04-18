@@ -5,12 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'profilGuest.dart';
 import 'successNotifUmpanBalik.dart';
 
-class umpanBalikGuest extends StatelessWidget {
+class umpanBalikGuest extends StatefulWidget {
   const umpanBalikGuest({super.key});
 
   @override
+  State<umpanBalikGuest> createState() => _umpanBalikGuestState();
+}
+
+TextEditingController _msgController = TextEditingController();
+
+class _umpanBalikGuestState extends State<umpanBalikGuest> {
+  @override
   Widget build(BuildContext context) {
-    TextEditingController _msgController = TextEditingController();
     var collection = FirebaseFirestore.instance
         .collection('guest')
         .doc('umpan_balik')
@@ -63,13 +69,15 @@ class umpanBalikGuest extends StatelessWidget {
                                 return successNotifUmpanBalik(
                                   returnback: umpanBalikGuest(),
                                 );
-                              })
+                              }),
+                          _msgController.clear()
                         },
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Pesan tidak boleh kosong'),
+                          behavior: SnackBarBehavior.floating,
                         ),
                       );
                     }

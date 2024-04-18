@@ -52,8 +52,8 @@ class _userFormScreenState extends State<userFormScreen> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.red, // background
-                onPrimary: Colors.white, // foreground
+                backgroundColor: Colors.red, // background
+                foregroundColor: Colors.white, // foreground
               ),
               onPressed: () {
                 showModalBottomSheet(
@@ -66,6 +66,7 @@ class _userFormScreenState extends State<userFormScreen> {
                   builder: (BuildContext context) {
                     return Container(
                       height: size.height * 0.35,
+                      width: size.width,
                       child: Column(
                         children: [
                           SizedBox(height: 25),

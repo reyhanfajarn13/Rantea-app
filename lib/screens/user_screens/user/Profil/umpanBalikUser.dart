@@ -5,12 +5,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../guest_screens/page/Profil/successNotifUmpanBalik.dart';
 import 'profilUser.dart';
 
-class umpanBalikUser extends StatelessWidget {
+class umpanBalikUser extends StatefulWidget {
   const umpanBalikUser({super.key});
 
   @override
+  State<umpanBalikUser> createState() => _umpanBalikUserState();
+}
+
+TextEditingController _msgController = TextEditingController();
+
+Widget _buildSuccessNotifUmpanBalik(BuildContext context) {
+  return successNotifUmpanBalik(returnback: umpanBalikUser());
+}
+
+class _umpanBalikUserState extends State<umpanBalikUser> {
+  @override
   Widget build(BuildContext context) {
-    TextEditingController _msgController = TextEditingController();
     final FirebaseAuth auth = FirebaseAuth.instance;
     User? user = auth.currentUser;
     var collection = FirebaseFirestore.instance
@@ -55,22 +65,23 @@ class umpanBalikUser extends StatelessWidget {
                       }).then(
                         (value) => {
                           showModalBottomSheet(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(15.0)),
-                              ),
-                              backgroundColor: Colors.blueGrey[50],
-                              context: context,
-                              builder: (BuildContext context) {
-                                return successNotifUmpanBalik(
-                                    returnback: umpanBalikUser);
-                              })
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(15.0)),
+                            ),
+                            backgroundColor: Colors.blueGrey[50],
+                            context: context,
+                            builder: (BuildContext context) =>
+                                _buildSuccessNotifUmpanBalik(context),
+                          ),
+                          _msgController.clear()
                         },
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Pesan tidak boleh kosong'),
+                          behavior: SnackBarBehavior.floating,
                         ),
                       );
                     }

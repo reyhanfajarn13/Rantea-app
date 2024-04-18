@@ -48,14 +48,17 @@ class fiturBottomSheet extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF133A40),
-                      fixedSize: Size(50, 60),
+                      fixedSize: Size(80, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12), // <-- Radius
                       ),
                     ),
                     child: Container(
-                        alignment: Alignment.center,
-                        child: Icon(Icons.app_registration_rounded, size: 35)),
+                        child: Icon(
+                      Icons.app_registration_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    )),
                     onPressed: () async {
                       await Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => tabelNilai()),
@@ -82,13 +85,19 @@ class fiturBottomSheet extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF133A40),
-                      fixedSize: Size(50, 60),
+                      fixedSize: Size(80, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12), // <-- Radius
                       ),
                     ),
-                    child:
-                        Container(child: Icon(Icons.history_rounded, size: 35)),
+                    child: Center(
+                      // Posisikan ikon di tengah secara vertikal
+                      child: Icon(
+                        Icons.history_rounded,
+                        color: Colors.white,
+                        size: 30, // Ukuran ikon yang diinginkan
+                      ),
+                    ),
                     onPressed: () async {
                       await Navigator.of(context).push(
                         MaterialPageRoute(
@@ -116,13 +125,17 @@ class fiturBottomSheet extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF133A40),
-                      fixedSize: Size(50, 60),
+                      fixedSize: Size(80, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12), // <-- Radius
                       ),
                     ),
                     child: Container(
-                        child: Icon(Icons.ssid_chart_rounded, size: 35)),
+                        child: Icon(
+                      Icons.ssid_chart_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    )),
                     onPressed: () async {
                       await Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => graphScreen()),

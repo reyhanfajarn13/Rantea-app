@@ -1,53 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'dart:math';
 
-class LineChartSample extends StatelessWidget {
-  Future<List<FlSpot>> fetchData() async {
-    // Perform asynchronous operations here
-    // For example, you could fetch data from an API
-    await Future.delayed(Duration(seconds: 2)); // Simulating an async operation
-    return [
-      FlSpot(3, 3),
-      FlSpot(1, 1),
-      FlSpot(3, 3),
-      FlSpot(3, 3),
-    ];
-  }
+class LineChartWidget extends StatelessWidget {
+  final List<String> dates;
+  final List<int> weights;
+
+  LineChartWidget({required this.dates, required this.weights});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<FlSpot>>(
-      future: fetchData(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          // Return a loading indicator while waiting for the data
-          return CircularProgressIndicator();
-        } else if (snapshot.hasError) {
-          // Handle error case
-          return Text('Error: ${snapshot.error}');
-        } else {
-          // Build the widget using the fetched data
-          List<FlSpot> data = snapshot.data!;
-          return AspectRatio(
-            aspectRatio: 2,
-            child: LineChart(
-              LineChartData(
-                lineBarsData: [
-                  LineChartBarData(
-                    spots: data,
-                    isCurved: true,
-                    color: Colors.blue,
-                    dotData: FlDotData(show: false),
-                  ),
-                ],
-                titlesData: FlTitlesData(show: false),
-                borderData: FlBorderData(show: false),
-                gridData: FlGridData(show: false),
-              ),
+    return LineChart(
+      LineChartData(
+        titlesData: FlTitlesData(
+          bottomTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 22,
+            getTextStyles: (value) => const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
-          );
-        }
-      },
+            getTitles: (value) {
+              if (value.toInt() >= 0 && value.toInt() < dates.length) {
+                return dates[value.toInt()].toString();
+              }
+              return '';
+            },
+          ),
+          leftTitles: SideTitles(
+            showTitles: true,
+            getTextStyles: (value) => const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          ),
+        ),
+        borderData: FlBorderData(
+          show: true,
+          border: Border.all(color: Colors.black, width: 1),
+        ),
+        minX: 0,
+        maxX: dates.length.toDouble() - 1,
+        minY: 0,
+        maxY: weights.isNotEmpty ? weights.reduce(max).toDouble() : 100,
+        lineBarsData: [
+          LineChartBarData(
+            spots: List.generate(
+              dates.length,
+              (index) => FlSpot(index.toDouble(), weights[index].toDouble()),
+            ),
+            isCurved: true,
+            colors: [Colors.blue],
+            barWidth: 4,
+            isStrokeCapRound: true,
+            belowBarData: BarAreaData(show: false),
+          ),
+        ],
+      ),
     );
   }
 }

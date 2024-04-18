@@ -21,9 +21,13 @@ class listTeaContentContainer extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => nextpage));
         },
         style: ElevatedButton.styleFrom(
-            minimumSize: Size(size.width * 0.4, size.height * 0.13),
-            backgroundColor: Colors.white,
-            shadowColor: Colors.black),
+          minimumSize: Size(size.width * 0.4, size.height * 0.13),
+          backgroundColor: Colors.white,
+          shadowColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10), // <-- Set radius to 10
+          ),
+        ),
         child: Row(
           children: [
             Container(

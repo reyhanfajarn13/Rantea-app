@@ -69,6 +69,7 @@ class _homeScreenUserState extends State<homeScreenUser> {
                   builder: (context) => takePictureCamera(camera: firstCamera)),
             );
           },
+          shape: CircleBorder(),
           child: SvgPicture.asset('lib/images/logo_scan.svg'),
         ),
       ),
