@@ -78,9 +78,9 @@ class DisplayPictureScreen extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Container(
-            child: Text('${imagePath}'),
-          ),
+          // Container(
+          //   child: Text('${imagePath}'),
+          // ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(size.width * 0.9, size.height * 0.08),

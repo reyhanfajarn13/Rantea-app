@@ -5,7 +5,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'data/dataTeaDetailsContent.dart';
 
 class teaDetailsContent extends StatelessWidget {
-  const teaDetailsContent({super.key});
+  final title;
+  final description;
+  final mesh;
+  final massaJenis;
+  final tingkatMutu;
+  final jenisPemasaran;
+  final funFact;
+  const teaDetailsContent(
+      {super.key,
+      required this.title,
+      required this.description,
+      this.mesh,
+      this.massaJenis,
+      this.tingkatMutu,
+      this.jenisPemasaran,
+      this.funFact});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +54,7 @@ class teaDetailsContent extends StatelessWidget {
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(left: size.width * 0.05),
           child: Text(
-            'Pecko Fanning (PF)',
+            '${title}',
             style: GoogleFonts.urbanist(
                 fontSize: 19, fontWeight: FontWeight.bold, color: Colors.black),
           ),
@@ -164,7 +179,7 @@ class teaDetailsContent extends StatelessWidget {
                     width: size.width * 0.9,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Broken Peco 1 atau biasa disingkat menjadi BP 1 merupakan salah satu mutu high grade yang memiliki spesifikasi ukuran 10 – 12, kadar air maksimal 4,5 dan kepadatan 300 – 330.',
+                      '${description}',
                       style: GoogleFonts.urbanist(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -196,7 +211,7 @@ class teaDetailsContent extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    'Parameter Uji Mutu',
+                    'Spesifikasi Bubuk Teh',
                     style: GoogleFonts.urbanist(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -220,121 +235,6 @@ class teaDetailsContent extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(5, 0, 15, 0),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 170,
-                            child: Card(
-                                shadowColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.all(15),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.thermostat_rounded,
-                                            color: Colors.green,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Temperature',
-                                                style: GoogleFonts.urbanist(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text("18 - 20 C",
-                                                  style: GoogleFonts.urbanist(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black,
-                                                  )),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          ),
-                          const Spacer(),
-                          Container(
-                            width: 170,
-                            child: Card(
-                                shadowColor: Colors.orange,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.all(15),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.wb_sunny_outlined,
-                                            color: Colors.orange,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Sunlight',
-                                                style: GoogleFonts.urbanist(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text("Inderect Light",
-                                                  style: GoogleFonts.urbanist(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black,
-                                                  )),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
                       Row(
                         children: [
                           Container(
@@ -366,7 +266,7 @@ class teaDetailsContent extends StatelessWidget {
                                                 height: 5,
                                               ),
                                               Text(
-                                                'Hardlines Zones',
+                                                'Ukuran Mesh',
                                                 style: GoogleFonts.urbanist(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w600,
@@ -376,7 +276,7 @@ class teaDetailsContent extends StatelessWidget {
                                               const SizedBox(
                                                 height: 5,
                                               ),
-                                              Text("10 - 12",
+                                              Text("${mesh}",
                                                   style: GoogleFonts.urbanist(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
@@ -420,7 +320,7 @@ class teaDetailsContent extends StatelessWidget {
                                                 height: 5,
                                               ),
                                               Text(
-                                                'Soil',
+                                                'Massa Jenis',
                                                 style: GoogleFonts.urbanist(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w600,
@@ -430,9 +330,9 @@ class teaDetailsContent extends StatelessWidget {
                                               const SizedBox(
                                                 height: 5,
                                               ),
-                                              Text("Inderect Light",
+                                              Text("${massaJenis}",
                                                   style: GoogleFonts.urbanist(
-                                                    fontSize: 14,
+                                                    fontSize: 11.5,
                                                     fontWeight: FontWeight.w600,
                                                     color: Colors.black,
                                                   )),
@@ -481,7 +381,7 @@ class teaDetailsContent extends StatelessWidget {
                                                 height: 5,
                                               ),
                                               Text(
-                                                'Growth Rate',
+                                                'Tingkat Mutu',
                                                 style: GoogleFonts.urbanist(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w600,
@@ -491,7 +391,7 @@ class teaDetailsContent extends StatelessWidget {
                                               const SizedBox(
                                                 height: 5,
                                               ),
-                                              Text("Moderate",
+                                              Text("${tingkatMutu}",
                                                   style: GoogleFonts.urbanist(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
@@ -535,7 +435,7 @@ class teaDetailsContent extends StatelessWidget {
                                                 height: 5,
                                               ),
                                               Text(
-                                                'Caution/Toxicity',
+                                                'Jenis Pemasaran',
                                                 style: GoogleFonts.urbanist(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w600,
@@ -545,7 +445,7 @@ class teaDetailsContent extends StatelessWidget {
                                               const SizedBox(
                                                 height: 5,
                                               ),
-                                              Text("Non Toxic",
+                                              Text("${jenisPemasaran}",
                                                   style: GoogleFonts.urbanist(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
@@ -610,7 +510,7 @@ class teaDetailsContent extends StatelessWidget {
                     width: size.width * 0.9,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'The name "Prayer Plant" is inspired by its unique habit of folding its leaves upward in the evening, resembling hands in prayer.',
+                      '${funFact}',
                       style: GoogleFonts.urbanist(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,

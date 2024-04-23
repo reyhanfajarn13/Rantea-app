@@ -4,7 +4,22 @@ import 'package:rantea_app/screens/guest_screens/page/Home/teaDetailsContent/tea
 import 'homeTeaDetails.dart';
 
 class screenTeaDetails extends StatelessWidget {
-  const screenTeaDetails({super.key});
+  final title;
+  final description;
+  final mesh;
+  final massaJenis;
+  final tingkatMutu;
+  final jenisPemasaran;
+  final funFact;
+  const screenTeaDetails(
+      {super.key,
+      required this.title,
+      required this.description,
+      this.mesh,
+      this.massaJenis,
+      this.tingkatMutu,
+      this.jenisPemasaran,
+      this.funFact});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +58,17 @@ class screenTeaDetails extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Stack(
-          children: <Widget>[teaDetailsContent()],
+          children: <Widget>[
+            teaDetailsContent(
+              title: title,
+              description: description,
+              mesh: mesh,
+              massaJenis: massaJenis,
+              tingkatMutu: tingkatMutu,
+              jenisPemasaran: jenisPemasaran,
+              funFact: funFact,
+            )
+          ],
         ),
       ),
     );

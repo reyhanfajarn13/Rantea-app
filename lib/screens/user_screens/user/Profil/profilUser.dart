@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rantea_app/screens/signIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../beranda/fitur/history/historyUserScreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'umpanBalikUser.dart';
 
 class profilUser extends StatelessWidget {
@@ -204,9 +205,20 @@ class profilUser extends StatelessWidget {
             ),
           ),
           onPressed: () async {
-            await Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => historyUserScreen()),
-            );
+            try {
+              final Uri url = Uri.parse('https://rantea.vercel.app/');
+
+              if (await canLaunchUrl(url)) {
+                // Gunakan 'await' dan cek jika bisa diluncurkan
+                await launchUrl(url); // Luncurkan URL
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Could not launch $url')),
+                ); // Tampilkan pesan jika tidak bisa diluncurkan
+              }
+            } catch (e) {
+              print(e); // Tangani kesalahan dan tampilkan pesan
+            }
           },
           child: Text(
             'Update Profil',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'artikelContent/artikelContentScreen.dart';
 import 'headlineNewsContent/headlineNewsContent.dart';
 import 'highlightTeaContent/highlightTeaContent.dart';
 import 'pengenalanContent/pengenalanContent.dart';
@@ -63,7 +64,13 @@ class _homeGuestState extends State<homeGuest> {
               ),
               const SizedBox(
                 height: 25,
-              )
+              ),
+              Container(
+                child: artikelContentScreen(),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
             ],
           ),
         ),

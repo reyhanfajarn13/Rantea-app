@@ -28,7 +28,7 @@ class _PieChartScreenState extends State<PieChartScreen> {
 
     List<QueryDocumentSnapshot> documents = querySnapshot.docs;
 
-    // Process data
+    // Step 1: Create a map to accumulate total berat by prediction type
     Map<String, double> totalBeratByPrediction = {};
 
     documents.forEach((document) {
@@ -42,21 +42,31 @@ class _PieChartScreenState extends State<PieChartScreen> {
           ifAbsent: () => totalBerat);
     });
 
-    // Convert data to PieChartSectionData
+    // Step 2: Calculate the total of all sections
+    double totalBerat = totalBeratByPrediction.values.reduce((a, b) => a + b);
+
+    // Step 3: Convert data to PieChartSectionData with percentages
     List<PieChartSectionData> sections = [];
-    totalBeratByPrediction.forEach((prediction, totalBerat) {
-      final value = PieChartSectionData(
+
+    totalBeratByPrediction.forEach((prediction, totalWeight) {
+      double percentage = (totalWeight / totalBerat) * 100;
+
+      final section = PieChartSectionData(
         color: _randomColor(),
-        value: totalBerat,
+        value: totalWeight,
         title:
-            '$prediction\n${totalBerat.toStringAsFixed(2)}', // Label format: PredictionType\nTotalBerat
+            '$prediction\n${percentage.toStringAsFixed(1)}%', // Display percentage
         radius: 100,
         titleStyle: TextStyle(
-            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
       );
-      sections.add(value);
+      sections.add(section);
     });
 
+    // Update the state with the new sections
     setState(() {
       _pieChartSections = sections;
       _loading = false;
@@ -65,8 +75,7 @@ class _PieChartScreenState extends State<PieChartScreen> {
 
   Color _randomColor() {
     // Generate random color
-    return Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
-        .withOpacity(1.0);
+    return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
   }
 
   @override

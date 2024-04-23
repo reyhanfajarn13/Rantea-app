@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'fitur/grafik/lineChartScreen.dart';
+import 'fitur/grafik/pieChartScreen.dart';
 import 'fitur/grafik/lineGraph.dart';
 
 class homeUserHeader extends StatelessWidget {
@@ -12,6 +12,7 @@ class homeUserHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       height: 400,
       color: Color(0xFF133A40),
@@ -62,7 +63,7 @@ class homeUserHeader extends StatelessWidget {
           ),
           Container(
             height: 300,
-            width: 300,
+            width: size.width,
             child: PieChartScreen(),
           )
         ],
