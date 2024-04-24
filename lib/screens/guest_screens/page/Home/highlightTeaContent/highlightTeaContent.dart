@@ -56,7 +56,14 @@ class highlightTeaContent extends StatelessWidget {
               pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(
                 title: 'Pecko Fanning',
-                description: ' ',
+                description:
+                    'Pekoe Fannings (PF) adalah salah satu varietas teh hitam yang memiliki daun yang lebih kecil dari varietas lainnya. Istilah "pekoe" biasanya mengacu pada kualitas tertentu dari daun teh, sementara "fannings" merujuk pada ukuran daun yang sangat kecil. PF merupakan salah satu jenis teh hitam yang masuk kedalam golongan mutu 1 dan menjadi jenis teh hitam yang dikirim ke berbagai negara tujuan ekspor PTPN VIII Kebun Rancabali. Teh hitam PF ini sangat dinikmati oleh masyarakat Asia karena mempunyai rasa yang khas.',
+                mesh: '18',
+                massaJenis: '290-295cc/100g ',
+                tingkatMutu: '1(Satu)',
+                jenisPemasaran: 'Ekspor',
+                funFact:
+                    'Teh hitam Pekoe Fannings sering kali menghasilkan minuman yang kuat dan beraroma, karena luas permukaan daun yang lebih kecil memungkinkan cepatnya pelepasan rasa dan aroma saat diseduh. Ini membuatnya menjadi pilihan yang populer untuk teh sarapan dan minuman teh yang kuat lainnya.',
               ),
             ),
             const SizedBox(
@@ -139,7 +146,14 @@ class highlightTeaContent extends StatelessWidget {
               pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(
                 title: 'Dust',
-                description: ' ',
+                description:
+                    'Dust adalah jenis teh hitam yang mempunyai ukurannya kecil seperti debu. Teh hitam dust termasuk salah satu jenis teh hitam golongan mutu 1. Teh hitam dust menjadi salah satu andalan PTPN dalam memenuhi kebutuhan pasar internasional. Teh ini telah berhasil dijual ke berbagai negara, seperti Jerman, Jepang, Inggris, dan negara-negara lainnya.',
+                mesh: '22-60',
+                massaJenis: '245-255cc/100g',
+                tingkatMutu: '1(Satu)',
+                jenisPemasaran: 'Ekspor',
+                funFact:
+                    '"Dust" adalah ukuran daun yang paling kecil dan paling halus. Teh berukuran dust biasanya memiliki waktu perendaman yang lebih pendek daripada daun teh yang lebih besar, dan mereka sering digunakan dalam pembuatan teh celup atau teh kantong. Teh berukuran dust juga sering dijumpai dalam campuran teh sarapan atau teh komersial.',
               ),
             ),
             const SizedBox(

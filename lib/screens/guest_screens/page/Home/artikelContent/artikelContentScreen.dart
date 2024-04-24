@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:math';
 
 class artikelContentScreen extends StatefulWidget {
   const artikelContentScreen({super.key});
@@ -9,6 +13,22 @@ class artikelContentScreen extends StatefulWidget {
 }
 
 class _artikelContentScreenState extends State<artikelContentScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<List<dynamic>> fetchBlogData() async {
+    final response =
+        await http.get(Uri.parse('https://rantea.vercel.app/api/blog'));
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body); // Kembalikan data sebagai list
+    } else {
+      throw Exception('Failed to load blog data');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,79 +62,98 @@ class _artikelContentScreenState extends State<artikelContentScreen> {
           ],
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: 3,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Card(
-                  child: Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      children: [
-                        Spacer(),
-                        Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Container(
-                              height: 100,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
-                                child: Image.asset(
-                                  'lib/images/teh.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: ListTile(
-                                title: Text(
-                                  'Mengenal Perbedaan Teh Hitam Orthodox dan CTC',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+        FutureBuilder(
+            future: fetchBlogData(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else {
+                var data = snapshot.data;
+                data!.sort((a, b) => b['id'].compareTo(a['id']));
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: min(3, data!.length),
+                  itemBuilder: (context, index) {
+                    var blog = data[index];
+                    return Padding(
+                      padding: const EdgeInsets.all(0.0),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Card(
+                          child: Container(
+                            height: 150,
+                            decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                Spacer(),
+                                Row(
                                   children: [
-                                    Text(
-                                      'Apakah kamu termasuk salah satu orang yang gemar mengonsumsi teh? Teh memang sudah menjadi minuman yang familiar di Indonesia dan sebagai salah satu minuman yang paling dekat dengan aktivitas harian masyarakat.',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black87,
+                                    SizedBox(width: 10),
+                                    Container(
+                                      height: 100,
+                                      width: 80,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(5),
+                                        child: Image.network(
+                                          blog['imageUrl'],
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: ListTile(
+                                        title: Text(
+                                          blog['title'],
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black87,
+                                          ),
+                                          maxLines: 2, // Batasi hingga 2 baris
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        subtitle: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              blog['desc'],
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black87,
+                                              ),
+                                              maxLines:
+                                                  5, // Batasi hingga 2 baris
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
+                                Spacer(),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                        Spacer(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
+                      ),
+                    );
+                  },
+                );
+              }
+            }),
       ],
     );
   }

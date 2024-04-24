@@ -49,10 +49,9 @@ class profilUser extends StatelessWidget {
           height: size.height * 0.1,
           child: Row(
             children: [
-              Text('DISINI GAMBAR'),
-              SizedBox(
-                width: 15,
-              ),
+              Spacer(),
+              Icon(Icons.people_alt_outlined),
+              Spacer(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -77,7 +76,8 @@ class profilUser extends StatelessWidget {
                   ),
                   Spacer()
                 ],
-              )
+              ),
+              Spacer(),
             ],
           ),
         ),
@@ -206,7 +206,8 @@ class profilUser extends StatelessWidget {
           ),
           onPressed: () async {
             try {
-              final Uri url = Uri.parse('https://rantea.vercel.app/');
+              final Uri url = Uri.parse(
+                  'https://rantea.vercel.app/blog/perbedaan-teh-hitam-orthodox-dan-ctc');
 
               if (await canLaunchUrl(url)) {
                 // Gunakan 'await' dan cek jika bisa diluncurkan
