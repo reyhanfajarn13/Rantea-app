@@ -57,7 +57,6 @@ class _historyUserScreenState extends State<historyUserScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    const List<int> list = <int>[4, 25, 50, 100];
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('users')
@@ -72,7 +71,15 @@ class _historyUserScreenState extends State<historyUserScreen> {
           return Center(child: Text('Error: ${snapshot.error}'));
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Center(child: Text('No data available'));
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                'Riwayat',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              centerTitle: true,
+            ),
+          );
         }
 
         // Ambil semua data dari snapshot

@@ -1,4 +1,3 @@
-import 'package:rantea_app/screens/user_screens/loginScreenUser.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'firebase_options.dart';
 import 'screens/splashScreen.dart';
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Rantea',
       theme: ThemeData(
         // This is the theme of your application.
         //

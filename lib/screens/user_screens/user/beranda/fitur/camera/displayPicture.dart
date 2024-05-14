@@ -10,11 +10,13 @@ import 'userFormScreen.dart';
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
   final String predictionTeaType;
+  final String probability;
   final CameraController controller;
   const DisplayPictureScreen({
     super.key,
     required this.imagePath,
     required this.predictionTeaType,
+    required this.probability,
     required this.controller,
   });
 
@@ -78,9 +80,17 @@ class DisplayPictureScreen extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          // Container(
-          //   child: Text('${imagePath}'),
-          // ),
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              'Akurasi: ${probability}%',
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontSize: 26,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(size.width * 0.9, size.height * 0.08),

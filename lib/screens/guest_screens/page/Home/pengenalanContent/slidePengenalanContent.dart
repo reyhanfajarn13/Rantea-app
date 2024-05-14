@@ -73,7 +73,7 @@ class _slidePengenalanContentState extends State<slidePengenalanContent> {
               IconButton(
                   iconSize: 35,
                   onPressed: () async {
-                    await Navigator.pushReplacement(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => homeGuest()),
                     );

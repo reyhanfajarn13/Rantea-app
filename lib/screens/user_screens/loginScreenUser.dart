@@ -157,52 +157,23 @@ class _LoginButtonState extends State<LoginButton> {
                   MaterialPageRoute(builder: (context) => loadingPage()));
             }
           } catch (error) {
-            print(error);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Container(
-                  padding: EdgeInsets.all(16),
-                  height: 90,
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 201, 17, 42),
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 40,
-                        child: SvgPicture.asset('lib/images/warning.svg'),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Oops!",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                            Text(
-                              "Password Anda Salah.",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )),
-              behavior: SnackBarBehavior.floating,
-              backgroundColor: Colors.transparent,
-              duration: Duration(milliseconds: 1500),
-            ));
+            String errorMessage = error.toString();
+            if (errorMessage.contains(
+                "[firebase_auth/channel-error] Unable to establish connection on channel.")) {
+              _showSnackBar(
+                  context, 'No Internet Connection', 'Check your network.');
+            } else if (errorMessage.contains(
+                "[firebase_auth/network-request-failed] A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
+              _showSnackBar(
+                  context, 'No Internet Connection', 'Check your network.');
+            } else if (errorMessage.contains(
+                "The supplied auth credential is incorrect, malformed or has expired.")) {
+              _showSnackBar(context, 'Invalid Email/Password',
+                  'Please check email or password');
+            }
+
+            print(errorMessage);
+            // print(error);
           }
         },
         style: ElevatedButton.styleFrom(
@@ -213,9 +184,57 @@ class _LoginButtonState extends State<LoginButton> {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10)),
         child: Text(
-          'Masuk Sebagai User',
+          'Masuk Sebagai MinTea',
           style: GoogleFonts.poppins(
               fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
         ));
+  }
+
+  void _showSnackBar(BuildContext context, String title, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Container(
+          padding: EdgeInsets.all(16),
+          height: 90,
+          decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          child: Row(
+            children: [
+              Container(
+                width: 40,
+                child: SvgPicture.asset('lib/images/warning.svg'),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
+                    ),
+                    Text(
+                      message,
+                      style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      duration: Duration(milliseconds: 1500),
+    ));
   }
 }
