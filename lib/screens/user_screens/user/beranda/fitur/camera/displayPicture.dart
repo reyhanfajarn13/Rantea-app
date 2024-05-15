@@ -66,7 +66,7 @@ class DisplayPictureScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
           Container(
               height: size.height * 0.5,
@@ -91,6 +91,7 @@ class DisplayPictureScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 20),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(size.width * 0.9, size.height * 0.08),

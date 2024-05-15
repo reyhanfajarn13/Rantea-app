@@ -6,6 +6,7 @@ import 'package:rantea_app/screens/signIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart';
+import '../beranda/fitur/camera/userFormScreen.dart';
 import 'umpanBalikUser.dart';
 
 class profilUser extends StatefulWidget {
@@ -273,13 +274,20 @@ class _profilUserState extends State<profilUser> {
             ),
           ),
           onPressed: () async {
-            final File? imageAlbum = await getImage();
-            print('pathnya: ${imageAlbum}'); // tunggu hasil getImage
-            if (imageAlbum != null) {
-              var prediction = await sendImageToApi(imageAlbum);
-            } else {
-              print('No image selected');
-            }
+            // final File? imageAlbum = await getImage();
+            // print('pathnya: ${imageAlbum}'); // tunggu hasil getImage
+            // if (imageAlbum != null) {
+            //   var prediction = await sendImageToApi(imageAlbum);
+            // } else {
+            //   print('No image selected');
+            // }
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                  builder: (context) => userFormScreen(
+                        imagePath: "imagePath",
+                        predictionTeaType: "BT4",
+                      )),
+            );
           },
           child: Text(
             'Buka Gallery',

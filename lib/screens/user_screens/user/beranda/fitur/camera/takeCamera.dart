@@ -51,8 +51,15 @@ class _takePictureCameraState extends State<takePictureCamera> {
     return file;
   }
 
-  Future<Map<String, dynamic>> sendImageToApi(File image) async {
+  Future<Map<String, dynamic>> sendImageToApi(
+      BuildContext context, File image) async {
     try {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Center(child: CircularProgressIndicator());
+        },
+      );
       final url =
           "https://asia-southeast2-rantea-app-422901.cloudfunctions.net/rantea-predict/rantea-prediction";
 
@@ -89,12 +96,14 @@ class _takePictureCameraState extends State<takePictureCamera> {
         print("Gagal mendapatkan prediksi: ${response.statusMessage}");
         throw Exception("Failed to get prediction: ${response.statusMessage}");
       }
+      Navigator.pop(context);
     } catch (e) {
       print("Error sending image data to API: $e");
       return {
         "class_name": 'Empty',
         "probability": '0.0',
       };
+      Navigator.pop(context);
     }
   }
 
@@ -154,7 +163,7 @@ class _takePictureCameraState extends State<takePictureCamera> {
               if (await imageFile != null) {
                 print(
                     "File exists, path: ${imageFile}"); // Pastikan file gambar ada
-                final prediction = await sendImageToApi(imageFile!);
+                final prediction = await sendImageToApi(context, imageFile!);
                 await Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => DisplayPictureScreen(
