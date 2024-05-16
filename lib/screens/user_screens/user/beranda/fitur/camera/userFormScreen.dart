@@ -38,6 +38,7 @@ class _userFormScreenState extends State<userFormScreen> {
   int? nilaiKerataan;
   String selectedKebersihan = '';
   int? nilaiKebersihan;
+  String messageWidgetValue = '';
 
   @override
   Widget build(BuildContext context) {
@@ -52,37 +53,42 @@ class _userFormScreenState extends State<userFormScreen> {
     Widget messageWidget;
 
     if (totalNilai > 15) {
-      messageWidget = Text('A',
+      messageWidgetValue = 'A';
+      messageWidget = Text('$messageWidgetValue',
           style: GoogleFonts.poppins(
-            fontSize: 30,
+            fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ));
     } else if (totalNilai >= 10 && totalNilai <= 15) {
-      messageWidget = Text('B',
+      messageWidgetValue = 'B';
+      messageWidget = Text('$messageWidgetValue',
           style: GoogleFonts.poppins(
-            fontSize: 30,
+            fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ));
     } else if (totalNilai >= 5 && totalNilai < 10) {
-      messageWidget = Text('C',
+      messageWidgetValue = 'C';
+      messageWidget = Text('$messageWidgetValue',
           style: GoogleFonts.poppins(
-            fontSize: 30,
+            fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ));
     } else if (totalNilai >= 1 && totalNilai < 5) {
-      messageWidget = Text('D',
+      messageWidgetValue = 'D';
+      messageWidget = Text('$messageWidgetValue',
           style: GoogleFonts.poppins(
-            fontSize: 30,
+            fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ));
     } else {
-      messageWidget = Text('No',
+      messageWidgetValue = ' ';
+      messageWidget = Text('$messageWidgetValue',
           style: GoogleFonts.poppins(
-            fontSize: 30,
+            fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ));
@@ -226,7 +232,7 @@ class _userFormScreenState extends State<userFormScreen> {
                           SizedBox(
                             width: 15,
                           ),
-                          Text('Apa warna bubuknya?',
+                          Text('Apa warna bubuknya? 🌱',
                               style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -291,7 +297,7 @@ class _userFormScreenState extends State<userFormScreen> {
                           SizedBox(
                             width: 15,
                           ),
-                          Text('Apa bentuk & ukurannya?',
+                          Text('Apa bentuk & ukurannya? 📏',
                               style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -351,7 +357,7 @@ class _userFormScreenState extends State<userFormScreen> {
                           SizedBox(
                             width: 15,
                           ),
-                          Text('Kerataan',
+                          Text('Kerataan Bubuk 📜',
                               style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -407,7 +413,7 @@ class _userFormScreenState extends State<userFormScreen> {
                           SizedBox(
                             width: 15,
                           ),
-                          Text('Apa Kebersihannya?',
+                          Text('Apa Kebersihannya? 🍃',
                               style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -471,19 +477,22 @@ class _userFormScreenState extends State<userFormScreen> {
                         Text(
                           "Total: $totalNilai",
                           style: GoogleFonts.poppins(
-                            fontSize: 20,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
                         ),
                         Spacer(),
                         Container(
-                          height: 50,
+                          height: 100,
                           width: 100,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: Color(0xFF133A40)),
                           child: Center(child: messageWidget),
+                        ),
+                        SizedBox(
+                          width: 25,
                         )
                       ],
                     ),
@@ -555,40 +564,64 @@ class _userFormScreenState extends State<userFormScreen> {
                                       ),
                                     ),
                                     onPressed: () async {
-                                      final String formattedDate =
-                                          DateFormat('MMMM d, yyyy')
-                                              .format(DateTime.now());
-                                      String imageUrl =
-                                          await _saveImagetoFirebase(
-                                              widget.imagePath);
-                                      double totalBerat = double.tryParse(
-                                              _weightController.text) ??
-                                          0.0;
-                                      await FirebaseFirestore.instance
-                                          .collection('users')
-                                          .doc('history')
-                                          .collection('tea_detail')
-                                          .add({
-                                        'userPredictBy': user?.email,
-                                        'predictionTeaType':
-                                            widget.predictionTeaType,
-                                        'imageUrl': imageUrl,
-                                        'warna': _warnaController.text,
-                                        'kerataan': _kerataanController.text,
-                                        'kebersihan':
-                                            _kebersihanController.text,
-                                        'bentuk_ukuran': _bentukController.text,
-                                        'totalBerat': totalBerat,
-                                        'timestamp': formattedDate,
-                                      });
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                homeScreenUser()),
-                                        (route) =>
-                                            false, // Hindari semua route sebelumnya dari tumpukan
+                                      showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (BuildContext context) {
+                                          return Center(
+                                            child: CircularProgressIndicator(),
+                                          );
+                                        },
                                       );
+
+                                      try {
+                                        final String formattedDate =
+                                            DateFormat('MMMM d, yyyy')
+                                                .format(DateTime.now());
+                                        String imageUrl =
+                                            await _saveImagetoFirebase(
+                                                widget.imagePath);
+                                        double totalBerat = double.tryParse(
+                                                _weightController.text) ??
+                                            0.0;
+                                        await FirebaseFirestore.instance
+                                            .collection('users')
+                                            .doc('history')
+                                            .collection('tea_detail')
+                                            .add({
+                                          'userPredictBy': user?.email,
+                                          'predictionTeaType':
+                                              widget.predictionTeaType,
+                                          'imageUrl': imageUrl,
+                                          'warna': _warnaController.text,
+                                          'kerataan': _kerataanController.text,
+                                          'kebersihan':
+                                              _kebersihanController.text,
+                                          'bentuk_ukuran':
+                                              _bentukController.text,
+                                          'totalNilai': totalNilai,
+                                          'totalBerat': totalBerat,
+                                          'timestamp': formattedDate,
+                                          'kriteriaPenerima':
+                                              messageWidgetValue,
+                                        });
+
+                                        Navigator.pop(
+                                            context); // Close the loading dialog
+                                        Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  homeScreenUser()),
+                                          (route) =>
+                                              false, // Avoid all previous routes from the stack
+                                        );
+                                      } catch (e) {
+                                        Navigator.pop(
+                                            context); // Close the loading dialog if there's an error
+                                        print('Error: $e');
+                                        // You can also show an error message to the user here if needed
+                                      }
                                     },
                                     child: Text(
                                       'OK',

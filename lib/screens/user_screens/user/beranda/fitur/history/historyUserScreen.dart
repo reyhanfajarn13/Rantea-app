@@ -241,7 +241,7 @@ class _historyUserScreenState extends State<historyUserScreen> {
                                 padding: const EdgeInsets.all(0.0),
                                 child: Card(
                                   child: SizedBox(
-                                    height: 150,
+                                    height: 200,
                                     child: Column(
                                       children: [
                                         Spacer(),
@@ -249,7 +249,7 @@ class _historyUserScreenState extends State<historyUserScreen> {
                                           children: [
                                             SizedBox(width: 10),
                                             Container(
-                                              height: 120,
+                                              height: 160,
                                               width: 100,
                                               decoration: BoxDecoration(
                                                 borderRadius:
@@ -280,16 +280,6 @@ class _historyUserScreenState extends State<historyUserScreen> {
                                                   children: [
                                                     Text(
                                                       'User Predict By: ${data['userPredictBy']}',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: Colors.black87,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      'Timestamp: ${data['timestamp']}',
                                                       style:
                                                           GoogleFonts.poppins(
                                                         fontSize: 14,
