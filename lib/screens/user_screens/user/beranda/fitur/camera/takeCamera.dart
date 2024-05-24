@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'dart:io';
 import 'displayPicture.dart';
 
@@ -55,11 +56,12 @@ class _takePictureCameraState extends State<takePictureCamera> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return Center(child: CircularProgressIndicator());
+          return Center(
+              child: Lottie.asset('lib/images/loadingAnimationScreen.json'));
         },
       );
       final url =
-          "https://asia-southeast2-rantea-app-422901.cloudfunctions.net/rantea-predict/rantea-prediction";
+          "https://asia-southeast2-rantea-app-422901.cloudfunctions.net/rantea-predict-wbrgb/rantea-prediction";
 
       var formData =
           FormData.fromMap({'file': await MultipartFile.fromFile(image.path)});
@@ -136,11 +138,15 @@ class _takePictureCameraState extends State<takePictureCamera> {
                     ),
                   );
                 } else {
-                  return const Center(child: CircularProgressIndicator());
+                  return Center(
+                      child: Lottie.asset(
+                          'lib/images/loadingAnimationScreen.json'));
                 }
               } else {
                 // Otherwise, display a loading indicator.
-                return const Center(child: CircularProgressIndicator());
+                return Center(
+                    child:
+                        Lottie.asset('lib/images/loadingAnimationScreen.json'));
               }
             },
           ),

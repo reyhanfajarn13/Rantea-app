@@ -36,6 +36,7 @@ class _homeScreenGuestState extends State<homeScreenGuest> {
         ]),
       ),
       bottomNavigationBar: Container(
+        height: size.height * 0.1,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(24), topLeft: Radius.circular(24)),
@@ -55,11 +56,17 @@ class _homeScreenGuestState extends State<homeScreenGuest> {
           child: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded),
+                icon: Icon(
+                  Icons.home_rounded,
+                  size: 30,
+                ),
                 label: 'Beranda',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.people_alt_rounded),
+                icon: Icon(
+                  Icons.people_alt_rounded,
+                  size: 30,
+                ),
                 label: 'Profil',
               ),
             ],

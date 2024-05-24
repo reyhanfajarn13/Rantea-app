@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'dart:math';
+import 'package:lottie/lottie.dart';
 
 class PieChartScreen extends StatefulWidget {
   @override
@@ -81,7 +82,7 @@ class _PieChartScreenState extends State<PieChartScreen> {
   @override
   Widget build(BuildContext context) {
     return _loading
-        ? Center(child: CircularProgressIndicator())
+        ? Center(child: Lottie.asset('lib/images/loadAnimationScreen_2.json'))
         : Center(
             child: PieChart(
               PieChartData(

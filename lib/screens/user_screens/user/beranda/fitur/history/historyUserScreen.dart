@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
 
+import 'package:lottie/lottie.dart';
+
 class historyUserScreen extends StatefulWidget {
   const historyUserScreen({Key? key});
 
@@ -65,7 +67,8 @@ class _historyUserScreenState extends State<historyUserScreen> {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return Center(
+              child: Lottie.asset('lib/images/loadingAnimationScreen.json'));
         }
         if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
@@ -219,6 +222,14 @@ class _historyUserScreenState extends State<historyUserScreen> {
                             child: Row(
                               children: [
                                 SizedBox(width: 15),
+                                Icon(
+                                  Icons.date_range_rounded,
+                                  color: Color(0xFF133A40),
+                                  size: 20,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
                                 Text(
                                   timestamp,
                                   style: TextStyle(
@@ -227,6 +238,16 @@ class _historyUserScreenState extends State<historyUserScreen> {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
+                                Spacer(),
+                                Container(
+                                  child: Text(
+                                    '------------------------------------------------------',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                )
                               ],
                             ),
                           ),
@@ -240,8 +261,9 @@ class _historyUserScreenState extends State<historyUserScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(0.0),
                                 child: Card(
+                                  surfaceTintColor: Color(0xFF133A40),
                                   child: SizedBox(
-                                    height: 200,
+                                    height: 150,
                                     child: Column(
                                       children: [
                                         Spacer(),
@@ -249,7 +271,7 @@ class _historyUserScreenState extends State<historyUserScreen> {
                                           children: [
                                             SizedBox(width: 10),
                                             Container(
-                                              height: 160,
+                                              height: 120,
                                               width: 100,
                                               decoration: BoxDecoration(
                                                 borderRadius:
@@ -266,27 +288,47 @@ class _historyUserScreenState extends State<historyUserScreen> {
                                             ),
                                             Expanded(
                                               child: ListTile(
-                                                title: Text(
-                                                  '${data['predictionTeaType']}',
-                                                  style: GoogleFonts.poppins(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black87,
-                                                  ),
+                                                title: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      decoration: BoxDecoration(
+                                                          color:
+                                                              Color(0xFF133A40),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5)),
+                                                      child: Center(
+                                                        child: Text(
+                                                          '${data['predictionTeaType']}',
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                            fontSize: 25,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                                 subtitle: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      'User Predict By: ${data['userPredictBy']}',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: Colors.black87,
-                                                      ),
+                                                    // Text(
+                                                    //   'User Predict By: ${data['userPredictBy']}',
+                                                    //   style:
+                                                    //       GoogleFonts.poppins(
+                                                    //     fontSize: 14,
+                                                    //     fontWeight:
+                                                    //         FontWeight.w500,
+                                                    //     color: Colors.black87,
+                                                    //   ),
+                                                    // ),
+                                                    SizedBox(
+                                                      height: 20,
                                                     ),
                                                     Text(
                                                       'Total Berat: ${data['totalBerat']}',
@@ -301,6 +343,26 @@ class _historyUserScreenState extends State<historyUserScreen> {
                                                   ],
                                                 ),
                                               ),
+                                            ),
+                                            Container(
+                                              height: 120,
+                                              width: 10,
+                                              color: Color(0xFF133A40),
+                                            ),
+                                            SizedBox(
+                                              width: 15,
+                                            ),
+                                            Container(
+                                                child: Text(
+                                              data['kriteriaPenerima'],
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 45,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black87,
+                                              ),
+                                            )),
+                                            SizedBox(
+                                              width: 15,
                                             ),
                                           ],
                                         ),

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:path/path.dart' as path;
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../homeScreenUser.dart';
@@ -569,7 +570,8 @@ class _userFormScreenState extends State<userFormScreen> {
                                         barrierDismissible: false,
                                         builder: (BuildContext context) {
                                           return Center(
-                                            child: CircularProgressIndicator(),
+                                            child: Lottie.asset(
+                                                'lib/images/loadingAnimationScreen.json'),
                                           );
                                         },
                                       );
