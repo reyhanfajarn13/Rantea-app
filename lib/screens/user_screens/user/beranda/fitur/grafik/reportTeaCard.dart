@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class reportTeaCard extends StatelessWidget {
-  final firstTeaType;
+  final List<String> firstTeaType;
   final int listlength;
-  final groupTeaType;
-  const reportTeaCard(
-      {super.key,
-      required this.firstTeaType,
-      required this.groupTeaType,
-      required this.listlength});
+  final String groupTeaType;
+  final Map<String, double> totalWeights;
+
+  const reportTeaCard({
+    Key? key,
+    required this.firstTeaType,
+    required this.groupTeaType,
+    required this.listlength,
+    required this.totalWeights,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +44,19 @@ class reportTeaCard extends StatelessWidget {
             Text(
               '$groupTeaType',
               style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
             Spacer(),
             Container(
               width: size.width * 0.65,
               height: 10,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: colorTea[groupTeaType]),
+                borderRadius: BorderRadius.circular(10),
+                color: colorTea[groupTeaType],
+              ),
             ),
           ],
         ),
@@ -60,11 +66,16 @@ class reportTeaCard extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: List.generate(listlength, (index) {
+                String teaType = firstTeaType[index];
+                double totalBeratTea = totalWeights.containsKey(teaType)
+                    ? totalWeights[teaType]!
+                    : 0.0;
                 return Container(
-                  width: listlength == 2 ? size.width * 0.45 : size.width * 0.3,
+                  width: listlength == 2 ? size.width * 0.45 : size.width * 0.4,
                   // Lebar setiap card
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 2), // Margin antar card
+                    horizontal: 2,
+                  ), // Margin antar card
                   child: Card(
                     shadowColor: colorTea[groupTeaType],
                     shape: RoundedRectangleBorder(
@@ -89,9 +100,9 @@ class reportTeaCard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    firstTeaType[index],
+                                    teaType,
                                     style: GoogleFonts.urbanist(
-                                      fontSize: 12,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black,
                                     ),
@@ -99,13 +110,26 @@ class reportTeaCard extends StatelessWidget {
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  Text(
-                                    "1000 Kg",
-                                    style: GoogleFonts.urbanist(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w800,
-                                      color: colorTea[groupTeaType],
-                                    ),
+                                  LayoutBuilder(
+                                    builder: (BuildContext context,
+                                        BoxConstraints constraints) {
+                                      double fontSize = 13.0;
+                                      // Cek apakah teks overflow
+                                      if (constraints.maxWidth <
+                                          size.width * 0.3) {
+                                        // Jika overflow, sesuaikan ukuran font
+                                        fontSize = 8.0;
+                                      }
+                                      return Text(
+                                        '$totalBeratTea Kg',
+                                        style: GoogleFonts.urbanist(
+                                          fontSize: fontSize,
+                                          fontWeight: FontWeight.w500,
+                                          color: colorTea[groupTeaType],
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      );
+                                    },
                                   ),
                                 ],
                               ),

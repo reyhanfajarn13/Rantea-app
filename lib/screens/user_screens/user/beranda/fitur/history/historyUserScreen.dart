@@ -331,6 +331,16 @@ class _historyUserScreenState extends State<historyUserScreen> {
                                                       height: 20,
                                                     ),
                                                     Text(
+                                                      'Scoring mutu: ${data['totalNilai']}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: Colors.black87,
+                                                      ),
+                                                    ),
+                                                    Text(
                                                       'Total Berat: ${data['totalBerat']}',
                                                       style:
                                                           GoogleFonts.poppins(

@@ -146,7 +146,7 @@ class fiturBottomSheet extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    'Grafik',
+                    'Laporan',
                     style: GoogleFonts.urbanist(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,

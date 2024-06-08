@@ -5,7 +5,6 @@ import 'package:rantea_app/screens/signIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart';
-import '../beranda/fitur/camera/userFormScreen.dart';
 import 'umpanBalikUser.dart';
 
 class profilUser extends StatefulWidget {
@@ -75,7 +74,6 @@ class _profilUserState extends State<profilUser> {
 
   @override
   Widget build(BuildContext context) {
-    String teaType = '';
     final FirebaseAuth auth = FirebaseAuth.instance;
     User? user = auth.currentUser;
     Size size = MediaQuery.of(context).size;
@@ -263,36 +261,6 @@ class _profilUserState extends State<profilUser> {
         ),
         SizedBox(
           height: 15,
-        ),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            fixedSize: Size(size.width * 0.3, size.height * 0.05),
-            backgroundColor: Color(0xFF133A40),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
-          onPressed: () async {
-            // final File? imageAlbum = await getImage();
-            // print('pathnya: ${imageAlbum}'); // tunggu hasil getImage
-            // if (imageAlbum != null) {
-            //   var prediction = await sendImageToApi(imageAlbum);
-            // } else {
-            //   print('No image selected');
-            // }
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                  builder: (context) => userFormScreen(
-                        imagePath: "imagePath",
-                        predictionTeaType: "BT4",
-                      )),
-            );
-          },
-          child: Text(
-            'Buka Gallery',
-            style: GoogleFonts.poppins(
-                fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
         ),
       ],
     );

@@ -131,11 +131,21 @@ class _takePictureCameraState extends State<takePictureCamera> {
               if (snapshot.connectionState == ConnectionState.done) {
                 // If the Future is complete, display the preview if the controller is initialized.
                 if (_controller.value.isInitialized) {
-                  return Positioned.fill(
-                    child: AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: CameraPreview(_controller),
-                    ),
+                  return Stack(
+                    children: [
+                      Positioned.fill(
+                        child: AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                          child: CameraPreview(_controller),
+                        ),
+                      ),
+                      Center(
+                        child: Lottie.asset(
+                          'lib/images/loadingAnimationScreen.json',
+                          // Path to your Lottie animation file
+                        ),
+                      ),
+                    ],
                   );
                 } else {
                   return Center(
