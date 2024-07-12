@@ -164,11 +164,11 @@ class DisplayPictureScreen extends StatelessWidget {
                                 controller.dispose();
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: (context) => userFormScreen(
-                                            imagePath: imagePath,
-                                            predictionTeaType:
-                                                predictionTeaType,
-                                          )),
+                                    builder: (context) => userFormScreen(
+                                      imagePath: imagePath,
+                                      predictionTeaType: predictionTeaType,
+                                    ),
+                                  ),
                                 );
                               },
                               child: Text(
@@ -200,13 +200,19 @@ class DisplayPictureScreen extends StatelessWidget {
           SizedBox(
             height: 15,
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 20, color: Colors.white),
-            ),
-            onPressed: () async {},
-            child: const Text('Foto Kembali'),
-          ),
+          // TextButton(
+          //   style: TextButton.styleFrom(
+          //     textStyle: const TextStyle(fontSize: 20, color: Colors.white),
+          //   ),
+          //   onPressed: () async {
+          //      Navigator.of(context).pushReplacement(
+          //                         MaterialPageRoute(
+          //                           builder: (context) =>
+          //                         ),
+          //                       );
+          //   },
+          //   child: const Text('Foto Kembali'),
+          // ),
           Spacer()
         ],
       ),

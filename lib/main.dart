@@ -1,4 +1,5 @@
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:rantea_app/screens/user_screens/user/homeScreenUser.dart';
 import 'firebase_options.dart';
 import 'screens/splashScreen.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Rantea',
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -1,10 +1,11 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'Profil/profilUser.dart';
 import 'beranda/fitur/camera/takeCamera.dart';
 import 'beranda/homeUser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'Profil/updateProfilUser.dart';
+import 'dart:io';
 
 class homeScreenUser extends StatefulWidget {
   const homeScreenUser({super.key});
@@ -45,70 +46,82 @@ class _homeScreenUserState extends State<homeScreenUser> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(children: <Widget>[
-          Column(
-            children: [
-              Container(
-                child: _widgetOptions.elementAt(_selectedIndex),
-              )
-            ],
-          ),
-        ]),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: SizedBox(
-        width: 75,
-        height: 75,
-        child: FloatingActionButton(
-          backgroundColor: Color(0xFF133A40),
-          onPressed: () async {
-            await Navigator.of(context).push(
-              MaterialPageRoute(
-                  builder: (context) => takePictureCamera(camera: firstCamera)),
-            );
-          },
-          shape: CircleBorder(),
-          child: SvgPicture.asset('lib/images/logo_scan.svg'),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        height: size.height * 0.1,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(24), topLeft: Radius.circular(24)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Colors.black38,
-              spreadRadius: 2,
-              blurRadius: 10,
+    return WillPopScope(
+      onWillPop: () async {
+        // Exit the app
+        if (Platform.isAndroid) {
+          SystemNavigator.pop();
+        } else if (Platform.isIOS) {
+          exit(0);
+        }
+        return false; // Disable back button
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Stack(children: <Widget>[
+            Column(
+              children: [
+                Container(
+                  child: _widgetOptions.elementAt(_selectedIndex),
+                )
+              ],
             ),
-          ],
+          ]),
         ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(24),
-            topLeft: Radius.circular(24),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: SizedBox(
+          width: 75,
+          height: 75,
+          child: FloatingActionButton(
+            backgroundColor: Color(0xFF133A40),
+            onPressed: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (context) =>
+                        takePictureCamera(camera: firstCamera)),
+              );
+            },
+            shape: CircleBorder(),
+            child: SvgPicture.asset('lib/images/logo_scan.svg'),
           ),
-          child: BottomNavigationBar(
-            unselectedItemColor: Colors.grey[600],
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_rounded,
-                  size: 30,
-                ),
-                label: 'Beranda',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.people_rounded, size: 30),
-                label: 'Profil',
+        ),
+        bottomNavigationBar: Container(
+          height: size.height * 0.1,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(24), topLeft: Radius.circular(24)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.black38,
+                spreadRadius: 2,
+                blurRadius: 10,
               ),
             ],
-            currentIndex: _selectedIndex,
-            selectedItemColor: Color(0xFF133A40),
-            onTap: _onItemTapped,
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(24),
+              topLeft: Radius.circular(24),
+            ),
+            child: BottomNavigationBar(
+              unselectedItemColor: Colors.grey[600],
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home_rounded,
+                    size: 30,
+                  ),
+                  label: 'Beranda',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.people_rounded, size: 30),
+                  label: 'Profil',
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              selectedItemColor: Color(0xFF133A40),
+              onTap: _onItemTapped,
+            ),
           ),
         ),
       ),

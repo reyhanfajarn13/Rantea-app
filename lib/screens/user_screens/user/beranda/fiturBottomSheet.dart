@@ -43,43 +43,43 @@ class fiturBottomSheet extends StatelessWidget {
               SizedBox(
                 width: 15,
               ),
-              Column(
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF133A40),
-                      fixedSize: Size(80, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12), // <-- Radius
-                      ),
-                    ),
-                    child: Container(
-                        child: Icon(
-                      Icons.app_registration_rounded,
-                      size: 30,
-                      color: Colors.white,
-                    )),
-                    onPressed: () async {
-                      await Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => tabelNilai()),
-                      );
-                    },
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'Tabel Nilai',
-                    style: GoogleFonts.urbanist(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF133A40)),
-                  )
-                ],
-              ),
-              SizedBox(
-                width: 35,
-              ),
+              // Column(
+              //   children: [
+              //     ElevatedButton(
+              //       style: ElevatedButton.styleFrom(
+              //         backgroundColor: Color(0xFF133A40),
+              //         fixedSize: Size(80, 60),
+              //         shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(12), // <-- Radius
+              //         ),
+              //       ),
+              //       child: Container(
+              //           child: Icon(
+              //         Icons.app_registration_rounded,
+              //         size: 30,
+              //         color: Colors.white,
+              //       )),
+              //       onPressed: () async {
+              //         await Navigator.of(context).push(
+              //           MaterialPageRoute(builder: (context) => tabelNilai()),
+              //         );
+              //       },
+              //     ),
+              //     SizedBox(
+              //       height: 5,
+              //     ),
+              //     Text(
+              //       'Tabel Nilai',
+              //       style: GoogleFonts.urbanist(
+              //           fontSize: 15,
+              //           fontWeight: FontWeight.bold,
+              //           color: Color(0xFF133A40)),
+              //     )
+              //   ],
+              // ),
+              // SizedBox(
+              //   width: 35,
+              // ),
               Column(
                 children: [
                   ElevatedButton(

@@ -11,6 +11,7 @@ class screenTeaDetails extends StatelessWidget {
   final tingkatMutu;
   final jenisPemasaran;
   final funFact;
+  final image;
   const screenTeaDetails(
       {super.key,
       required this.title,
@@ -19,7 +20,8 @@ class screenTeaDetails extends StatelessWidget {
       this.massaJenis,
       this.tingkatMutu,
       this.jenisPemasaran,
-      this.funFact});
+      this.funFact,
+      this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +62,14 @@ class screenTeaDetails extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             teaDetailsContent(
-              title: title,
-              description: description,
-              mesh: mesh,
-              massaJenis: massaJenis,
-              tingkatMutu: tingkatMutu,
-              jenisPemasaran: jenisPemasaran,
-              funFact: funFact,
-            )
+                title: title,
+                description: description,
+                mesh: mesh,
+                massaJenis: massaJenis,
+                tingkatMutu: tingkatMutu,
+                jenisPemasaran: jenisPemasaran,
+                funFact: funFact,
+                image: image)
           ],
         ),
       ),

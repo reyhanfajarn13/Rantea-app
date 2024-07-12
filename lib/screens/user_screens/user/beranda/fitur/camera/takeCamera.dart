@@ -28,7 +28,7 @@ class _takePictureCameraState extends State<takePictureCamera> {
       // Get a specific camera from the list of available cameras.
       widget.camera,
       // Define the resolution to use.
-      ResolutionPreset.high,
+      ResolutionPreset.max,
     );
 
     // Next, initialize the controller. This returns a Future.
@@ -109,6 +109,7 @@ class _takePictureCameraState extends State<takePictureCamera> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: new AppBar(
@@ -141,7 +142,11 @@ class _takePictureCameraState extends State<takePictureCamera> {
                       ),
                       Center(
                         child: Lottie.asset(
-                          'lib/images/loadingAnimationScreen.json',
+                          'lib/images/cameraScreenAnimation_5.json',
+                          // fit: BoxFit.cover,
+                          // width: double.infinity,
+                          // height: double.infinity,
+
                           // Path to your Lottie animation file
                         ),
                       ),

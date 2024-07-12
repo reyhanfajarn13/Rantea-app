@@ -38,6 +38,7 @@ class highlightTeaContent extends StatelessWidget {
               pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(
                 title: 'Broken Pecko',
+                image: 'lib/images/DUST-min.jpg',
                 description:
                     'Broken Pekoe (BP) merupakan salah satu teh hitam yang mempunyai nilai mutu tertinggi yaitu mutu 1 dari berbagai teh hitam yang diproduksi oleh PTPN VIII Kebun Rancabali. Bubuk teh hitam BP ini menjadi andalan PTPN VIII dalam memenuhi kebutuhan ekspor hingga ke Benua Eropa.',
                 mesh: '12/14',
@@ -56,6 +57,7 @@ class highlightTeaContent extends StatelessWidget {
               pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(
                 title: 'Pecko Fanning',
+                image: 'lib/images/PF-min.jpg',
                 description:
                     'Pekoe Fannings (PF) adalah salah satu varietas teh hitam yang memiliki daun yang lebih kecil dari varietas lainnya. Istilah "pekoe" biasanya mengacu pada kualitas tertentu dari daun teh, sementara "fannings" merujuk pada ukuran daun yang sangat kecil. PF merupakan salah satu jenis teh hitam yang masuk kedalam golongan mutu 1 dan menjadi jenis teh hitam yang dikirim ke berbagai negara tujuan ekspor PTPN VIII Kebun Rancabali. Teh hitam PF ini sangat dinikmati oleh masyarakat Asia karena mempunyai rasa yang khas.',
                 mesh: '18',
@@ -74,6 +76,7 @@ class highlightTeaContent extends StatelessWidget {
               pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(
                 title: 'Broken Tea',
+                image: 'lib/images/BT-min.jpg',
                 description:
                     'Broken Tea (BT) adalah jenis teh hitam di mana daun-daun teh telah dipecah-pecah menjadi potongan-potongan kecil dan mempunyai tekstur lebih ringan dibanding BOPF dan BP. Teh ini termasuk kedalam golongan mutu 1 dalam kelas teh hitam. Teh hitam BT telah berhasil dijual ke berbagai negara, seperti Inggris, Mesir, dan negara-negara lainnya di Benua Eropa dan Asia.',
                 mesh: '12/14',
@@ -128,6 +131,7 @@ class highlightTeaContent extends StatelessWidget {
               pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(
                 title: 'Broken Orange Pecko Fanning',
+                image: 'lib/images/BOPF-min.jpg',
                 description:
                     'Broken Orange Pekoe Fannings (BOPF) adalah bubuk teh hitam yang berasal dari daun muda dan tangkai muda yang tergulung dan pecah. Ukuran partikel lebih kecil daripada BOP. BOPF menjadi salah satu teh hitam yang mempunyai mutu tinggi, yaitu mutu 1 dari berbagai teh hitam yang diproduksi oleh PTPN VIII Kebun Rancabali. Bubuk teh hitam BOPF memenuhi kebutuhan permintaan teh dunia melalui pasar internasional.',
                 mesh: '14',
@@ -146,6 +150,7 @@ class highlightTeaContent extends StatelessWidget {
               pict: 'lib/images/teh.png',
               nextpage: screenTeaDetails(
                 title: 'Dust',
+                image: 'lib/images/DUST-min.jpg',
                 description:
                     'Dust adalah jenis teh hitam yang mempunyai ukurannya kecil seperti debu. Teh hitam dust termasuk salah satu jenis teh hitam golongan mutu 1. Teh hitam dust menjadi salah satu andalan PTPN dalam memenuhi kebutuhan pasar internasional. Teh ini telah berhasil dijual ke berbagai negara, seperti Jerman, Jepang, Inggris, dan negara-negara lainnya.',
                 mesh: '22-60',

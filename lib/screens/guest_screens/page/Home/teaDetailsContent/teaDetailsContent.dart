@@ -12,6 +12,7 @@ class teaDetailsContent extends StatelessWidget {
   final tingkatMutu;
   final jenisPemasaran;
   final funFact;
+  final image;
   const teaDetailsContent(
       {super.key,
       required this.title,
@@ -20,7 +21,8 @@ class teaDetailsContent extends StatelessWidget {
       this.massaJenis,
       this.tingkatMutu,
       this.jenisPemasaran,
-      this.funFact});
+      this.funFact,
+      this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class teaDetailsContent extends StatelessWidget {
               height: size.height * 0.25,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('lib/images/headlineNewsGuest_1.png'),
+                    image: AssetImage(image),
                     fit: BoxFit.fill,
                   ),
                   borderRadius: BorderRadius.circular(7)),
@@ -88,56 +90,6 @@ class teaDetailsContent extends StatelessWidget {
         ),
         const SizedBox(
           height: 25,
-        ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(left: size.width * 0.05),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: [
-                  Icon(
-                    Icons.photo_outlined,
-                    color: Colors.green,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Photo Gallery',
-                    style: GoogleFonts.urbanist(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  const Spacer(
-                    flex: 6,
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18,
-                  ),
-                  const Spacer(),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              CarouselSlider(
-                  items: pages,
-                  options: CarouselOptions(
-                    enableInfiniteScroll: false,
-                    autoPlay: false,
-                    enlargeCenterPage: true,
-                    viewportFraction: 0.5,
-                    aspectRatio: 3.0,
-                    initialPage: 1,
-                  )),
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 15,
         ),
         Container(
           alignment: Alignment.centerLeft,
